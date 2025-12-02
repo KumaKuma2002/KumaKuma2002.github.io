@@ -1,0 +1,399 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Junqi (Kuma) Liu | AI Researcher</title>
+    <link href="https://fonts.googleapis.com/css2?family=Quicksand:wght@400;600;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            /* --- DAY THEME VARIABLES (Default) --- */
+            --bg-color: #f5f5f7;       /* Cozy Light Grey */
+            --card-bg: #ffffff;        /* White cards */
+            --header-bg: #ffffff;
+            --text-main: #4a4a4a;      /* Dark Grey text */
+            --text-sub: #5e548e;       /* Purple-grey subtitles */
+            --primary-purple: #bcb4ff; /* Main accent */
+            --soft-mint: #d0f4de;
+            --pop-pink: #ffc8dd;
+            --tag-bg: #f0f0f5;
+            --dot-color: #e1e1e6;
+            --shadow-color: rgba(0, 0, 0, 0.05);
+            --shadow-hover: rgba(188, 180, 255, 0.25);
+        }
+
+        /* --- NIGHT THEME VARIABLES --- */
+        body.night-mode {
+            --bg-color: #1a1a2e;       /* Deep Midnight Blue */
+            --card-bg: #252542;        /* Lighter Navy for cards */
+            --header-bg: #20203a;
+            --text-main: #e6e6fa;      /* Lavender White text */
+            --text-sub: #b8b8d0;       /* Muted Lavender */
+            --primary-purple: #8c82ff; /* Slightly brighter purple for dark mode */
+            --tag-bg: #303050;
+            --dot-color: #2a2a40;
+            --shadow-color: rgba(0, 0, 0, 0.3);
+            --shadow-hover: rgba(140, 130, 255, 0.4);
+        }
+
+        body {
+            font-family: 'Quicksand', sans-serif;
+            background-color: var(--bg-color);
+            color: var(--text-main);
+            margin: 0;
+            padding: 0;
+            line-height: 1.6;
+            background-image: radial-gradient(var(--dot-color) 2px, transparent 2px);
+            background-size: 30px 30px;
+            transition: background-color 0.5s ease, color 0.5s ease;
+        }
+
+        /* --- Header --- */
+        header {
+            text-align: center;
+            padding: 60px 20px;
+            background: var(--header-bg);
+            border-bottom-left-radius: 50px;
+            border-bottom-right-radius: 50px;
+            box-shadow: 0 4px 20px var(--shadow-color);
+            transition: background-color 0.5s ease;
+        }
+
+        h1 {
+            font-size: 3rem;
+            color: var(--text-main);
+            margin-bottom: 10px;
+            transition: color 0.5s ease;
+        }
+
+        .nickname {
+            color: var(--primary-purple);
+            font-weight: 700;
+        }
+
+        .subtitle {
+            font-size: 1.2rem;
+            background-color: var(--soft-mint);
+            color: #556b2f; 
+            display: inline-block;
+            padding: 10px 20px;
+            border-radius: 30px;
+            margin-top: 10px;
+            font-weight: 600;
+        }
+
+        /* --- Layout --- */
+        .container {
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 40px 20px;
+        }
+
+        section {
+            margin-bottom: 50px;
+        }
+
+        h2 {
+            font-size: 2rem;
+            text-align: center;
+            color: var(--text-main);
+            margin-bottom: 30px;
+            position: relative;
+            display: inline-block;
+            left: 50%;
+            transform: translateX(-50%);
+            transition: color 0.5s ease;
+        }
+
+        h2::after, h2::before {
+            content: '🔮';
+            position: absolute;
+            top: 0;
+            font-size: 1.5rem;
+        }
+        h2::after { right: -40px; }
+        h2::before { left: -40px; }
+
+        /* --- Cards --- */
+        .card {
+            background: var(--card-bg);
+            border-radius: 25px;
+            padding: 30px;
+            margin-bottom: 25px;
+            box-shadow: 0 5px 15px var(--shadow-color);
+            border: 3px solid transparent;
+            transition: all 0.3s ease, background-color 0.5s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .card:hover {
+            transform: translateY(-5px);
+            border-color: var(--primary-purple);
+            box-shadow: 0 15px 30px var(--shadow-hover);
+        }
+
+        .card-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 15px;
+            flex-wrap: wrap;
+        }
+
+        .card-title {
+            font-size: 1.4rem;
+            font-weight: 700;
+            color: var(--text-main);
+            transition: color 0.5s ease;
+        }
+
+        .card-role {
+            background-color: var(--primary-purple);
+            color: white;
+            padding: 5px 15px;
+            border-radius: 15px;
+            font-size: 0.9rem;
+            font-weight: 600;
+        }
+
+        .card-location {
+            font-size: 0.9rem;
+            color: var(--text-sub);
+            width: 100%;
+            margin-top: 5px;
+            font-weight: 600;
+        }
+
+        .tag {
+            display: inline-block;
+            background-color: var(--tag-bg);
+            border: 1px solid var(--primary-purple);
+            color: var(--text-sub);
+            padding: 4px 10px;
+            border-radius: 12px;
+            font-size: 0.85rem;
+            margin-right: 5px;
+            margin-top: 5px;
+            transition: background-color 0.5s ease, color 0.5s ease;
+        }
+
+        ul { padding-left: 20px; }
+        li { margin-bottom: 8px; }
+
+        /* --- Footer --- */
+        .footer {
+            text-align: center;
+            margin-top: 60px;
+            padding: 40px;
+            background-color: var(--header-bg);
+            border-top-left-radius: 50px;
+            border-top-right-radius: 50px;
+            box-shadow: 0 -5px 20px var(--shadow-color);
+            transition: background-color 0.5s ease;
+        }
+
+        .btn {
+            display: inline-block;
+            background-color: var(--primary-purple);
+            color: white;
+            text-decoration: none;
+            padding: 12px 30px;
+            border-radius: 30px;
+            font-weight: 700;
+            margin: 10px;
+            transition: transform 0.2s;
+            border: none;
+        }
+        .btn:hover {
+            transform: scale(1.05) rotate(-2deg);
+        }
+
+        /* --- Floating Toggle Button --- */
+        .toggle-btn {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            width: 60px;
+            height: 60px;
+            background-color: var(--primary-purple);
+            border-radius: 50%;
+            border: none;
+            color: white;
+            font-size: 1.5rem;
+            cursor: pointer;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+            transition: transform 0.3s ease, background-color 0.3s;
+            z-index: 100;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .toggle-btn:hover {
+            transform: scale(1.1) rotate(10deg);
+            background-color: var(--text-sub);
+        }
+
+        .bear-icon {
+            font-size: 3rem;
+            display: block;
+            margin-bottom: 10px;
+        }
+
+    </style>
+</head>
+<body>
+
+    <header>
+        <div class="bear-icon">🐻💜</div>
+        <h1>Junqi <span class="nickname">(Kuma)</span> Liu</h1>
+        <div class="subtitle"> Vision-Language Model & Medical Image Researcher 🧠</div>
+        <p>Baltimore, MD 🇺🇸 • jliu452@uw.edu</p>
+    </header>
+
+    <div class="container">
+
+        <section>
+            <h2>My Learning Path</h2>
+            
+            <div class="card">
+                <div class="card-header">
+                    <span class="card-title">University of Copenhagen 🇩🇰</span>
+                    <span class="card-role">MSc IT & Cognition</span>
+                </div>
+                <p>Focused on NLP and Computational Cognitive Science.</p>
+                <div>
+                    <span class="tag">NLP</span>
+                    <span class="tag">Cognitive Science</span>
+                </div>
+            </div>
+
+            <div class="card">
+                <div class="card-header">
+                    <span class="card-title">Shanghai Jiao Tong University 🇨🇳</span>
+                    <span class="card-role">BEng Artificial Intelligence</span>
+                </div>
+                <p>Focused on Machine Learning, Computer Vision, and Reinforcement Learning.</p>
+                <div>
+                    <span class="tag">Machine Learning</span>
+                    <span class="tag">CV</span>
+                    <span class="tag">NLP</span>
+                </div>
+            </div>
+        </section>
+
+        <section>
+            <h2>Research Adventures</h2>
+            <div class="card">
+                <div class="card-header">
+                    <span class="card-title">Diffusion Model in CT Image Enhancement</span>
+                    <span class="card-role">Johns Hopkins University</span>
+                </div>
+                <div class="card-location">📍 CCVL Group | May 2025 - Present</div>
+                <ul>
+                    <li><strong>Mission:</strong> Developed "SMILE," the anatomical aware image enhancement tool for medical image enhancement.</li>
+                    <li><strong>Achievement:</strong> 50% better FID in image quality, and 10% lift for F1-score in early tumor detection.</li>
+                    <li><strong>Publication:</strong> <strong>RSNA 2025 oral</strong> presentation !🎤 & Submitted to CVPR 2026 🚀.</li>
+                </ul>
+                <div>
+                    <span class="tag">#MedicalAI</span>
+                    <span class="tag">#ComputerVision</span>
+                    <span class="tag">#DiffusionModels</span>
+                </div>
+            </div>
+
+            <div class="card">
+                <div class="card-header">
+                    <span class="card-title">Medical Imaging (ShapeKit)</span>
+                    <span class="card-role">Johns Hopkins University</span>
+                </div>
+                <div class="card-location">📍 CCVL Group | May 2025 - Present</div>
+                <ul>
+                    <li><strong>Mission:</strong> Developed "ShapeKit," an efficient CT postprocessing pipeline.</li>
+                    <li><strong>Achievement:</strong> Lift average over 10% DSC score on organ segmentations.</li>
+                    <li><strong>Publication:</strong> <strong>MICCAI 2025 </strong> poster presentation !🎉</li>
+                </ul>
+                <div>
+                    <span class="tag">#MedicalAI</span>
+                    <span class="tag">#ComputerVision</span>
+                </div>
+            </div>
+
+            <div class="card">
+                <div class="card-header">
+                    <span class="card-title">Zebrafish Tracking AI</span>
+                    <span class="card-role">University of Copenhagen</span>
+                </div>
+                <div class="card-location">📍 Kermen Lab (Neuroscience) | Oct 2024 - May 2025</div>
+                <ul>
+                    <li><strong>Mission:</strong> Developed a Multi-Attention tracking model to detect Zebrafish biological movements. 🐟</li>
+                    <li><strong>Achievement:</strong> Over 80% sensitivity and 90% specificity. </li>
+                    <li><strong>Publication:</strong> Submitting a paper to PNAS journal 🚀.</li>
+
+                </ul>
+                <div>
+                    <span class="tag">#Neuroscience</span>
+                    <span class="tag">#ComputerVision</span>
+                </div>
+            </div>
+
+            <div class="card">
+                <div class="card-header">
+                    <span class="card-title">Explainable AI for Optimization</span>
+                    <span class="card-role">Shanghai AI Lab & SJTU</span>
+                </div>
+                <div class="card-location">📍 Yes Lab | Oct 2022 - Oct 2023</div>
+                <ul>
+                    <li><strong>Mission:</strong> Innovative design for Bayesian Optimization, for multi-location geological perspective task.</li>
+                    <li><strong>Achievement:</strong> Lifted accuracy by 50%, and saved at least 90% time consumption! 🚀</li>
+                </ul>
+                <div>
+                    <span class="tag">#DeepLearning</span>
+                    <span class="tag">#BayesianOptimization</span>
+                    <span class="tag">#ExplainableAI</span>
+                </div>
+            </div>
+        </section>
+
+        <section>
+            <h2>Skills & Magic</h2>
+            <div style="text-align: center;">
+                <span class="btn" style="background-color: var(--pop-pink); color: #555; cursor: default;">Python 🐍</span>
+                <span class="btn" style="background-color: var(--primary-purple); cursor: default;">PyTorch 🔥</span>
+                <span class="btn" style="background-color: var(--soft-mint); color: #556b2f; cursor: default;">Tensorflow</span>
+                <span class="btn" style="background-color: #ffd166; color: #555; cursor: default;">SQL</span>
+                <span class="btn" style="background-color: #a2d2ff; color: #444; cursor: default;">Data Viz</span>
+            </div>
+        </section>
+
+    </div>
+
+    <footer class="footer">
+        <h3>Let's Connect! 💌</h3>
+        <p>I am always open to discussing AI, Neuroscience, or Photography!</p>
+        <a href="mailto:jliu452@uw.edu" class="btn">Email Me</a>
+        <a href="https://linkedin.com/in/junqi-liu-453aa0295" class="btn">LinkedIn</a>
+    </footer>
+
+    <button class="toggle-btn" onclick="toggleTheme()">🌙</button>
+
+    <script>
+        function toggleTheme() {
+            const body = document.body;
+            const btn = document.querySelector('.toggle-btn');
+            
+            // Toggle the class
+            body.classList.toggle('night-mode');
+            
+            // Change the icon based on mode
+            if (body.classList.contains('night-mode')) {
+                btn.innerHTML = '☀️'; // Switch icon to Sun
+            } else {
+                btn.innerHTML = '🌙'; // Switch icon to Moon
+            }
+        }
+    </script>
+
+</body>
+</html>
