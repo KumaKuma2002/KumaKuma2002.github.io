@@ -240,6 +240,51 @@
             display: block;
             margin-bottom: 10px;
         }
+        /* --- Cute Card Buttons --- */
+        .card-btn {
+            display: inline-block;
+            padding: 6px 16px;
+            border-radius: 20px;
+            text-decoration: none;
+            font-weight: 700;
+            font-size: 0.9rem;
+            margin-right: 8px;
+            margin-top: 10px;
+            transition: transform 0.2s, box-shadow 0.2s;
+            border: none;
+        }
+
+        .card-btn:hover {
+            transform: translateY(-3px) rotate(-1deg); /* Cute hover bounce */
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+        }
+
+        /* Specific Colors */
+        .github-btn {
+            background-color: var(--text-sub); /* Soft Purple-Grey */
+            color: white;
+        }
+
+        .paper-btn {
+            background-color: var(--pop-pink); /* Baby Pink */
+            color: #555; /* Dark grey text for readability */
+        }
+
+        .hf-btn {
+            background-color: #ffd166; /* Cute Yellow */
+            color: #555;
+        }
+
+        ul { padding-left: 20px; }
+        li { margin-bottom: 8px; }
+
+        .web-btn {
+            background-color: #4bf4d2; /* Cute Yellow */
+            color: #555;
+        }
+
+        ul { padding-left: 20px; }
+        li { margin-bottom: 8px; }
 
     </style>
 </head>
@@ -297,9 +342,18 @@
                     <li><strong>Publication:</strong> <strong>RSNA 2025 oral</strong> presentation !🎤 & Submitted to CVPR 2026 🚀.</li>
                 </ul>
                 <div>
-                    <span class="tag">#MedicalAI</span>
-                    <span class="tag">#ComputerVision</span>
-                    <span class="tag">#DiffusionModels</span>
+                    <a href="https://github.com/MrGiovanni/SMILE" target="_blank" class="card-btn github-btn">
+                        🐙 Code 
+                    </a>
+                    <a href="" target="_blank" class="card-btn paper-btn">
+                        📜 Paper 
+                    </a>
+                    <a href="https://ccvl.jhu.edu/bodymaps/index.html" target="_blank" class="card-btn web-btn">
+                        🌍 Website 
+                    </a>
+                    <a href="https://huggingface.co/CVPR-SMILE/SMILE_mini" target="_blank" class="card-btn hf-btn">
+                        🤖 Model 
+                    </a>
                 </div>
             </div>
 
@@ -315,8 +369,12 @@
                     <li><strong>Publication:</strong> <strong>MICCAI 2025 </strong> poster presentation !🎉</li>
                 </ul>
                 <div>
-                    <span class="tag">#MedicalAI</span>
-                    <span class="tag">#ComputerVision</span>
+                    <a href="https://github.com/BodyMaps/ShapeKit/tree/main" target="_blank" class="card-btn github-btn">
+                        🐙 Code 
+                    </a>
+                    <a href="https://arxiv.org/abs/2506.24003" target="_blank" class="card-btn paper-btn">
+                        📜 Paper 
+                    </a>
                 </div>
             </div>
 
@@ -333,8 +391,9 @@
 
                 </ul>
                 <div>
-                    <span class="tag">#Neuroscience</span>
-                    <span class="tag">#ComputerVision</span>
+                    <a href="https://github.com/KumaKuma2002/ZATA" target="_blank" class="card-btn github-btn">
+                        🐙 Code 
+                    </a>
                 </div>
             </div>
 
@@ -349,9 +408,9 @@
                     <li><strong>Achievement:</strong> Lifted accuracy by 50%, and saved at least 90% time consumption! 🚀</li>
                 </ul>
                 <div>
-                    <span class="tag">#DeepLearning</span>
-                    <span class="tag">#BayesianOptimization</span>
-                    <span class="tag">#ExplainableAI</span>
+                    <a href="https://tempmpm.readthedocs.io/en/latest/mpm.html" target="_blank" class="card-btn web-btn">
+                        🌍 website 
+                    </a>
                 </div>
             </div>
         </section>
@@ -371,7 +430,7 @@
 
     <footer class="footer">
         <h3>Let's Connect! 💌</h3>
-        <p>I am always open to discussing AI, Neuroscience, or Photography!</p>
+        <p>I am always open to discussing AI, VLM, Medial Image or Photography! 😊</p>
         <a href="mailto:jliu452@uw.edu" class="btn">Email Me</a>
         <a href="https://linkedin.com/in/junqi-liu-453aa0295" class="btn">LinkedIn</a>
     </footer>
