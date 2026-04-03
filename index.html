@@ -4,458 +4,440 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Junqi (Kuma) Liu | AI Researcher</title>
-    <link href="https://fonts.googleapis.com/css2?family=Quicksand:wght@400;600;700&display=swap" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Literata:ital,opsz,wght@0,7..72,400;0,7..72,600;1,7..72,400&family=Source+Sans+3:ital,wght@0,400;0,500;0,600;1,400&display=swap" rel="stylesheet">
     <style>
         :root {
-            /* --- DAY THEME VARIABLES (Default) --- */
-            --bg-color: #f5f5f7;       /* Cozy Light Grey */
-            --card-bg: #ffffff;        /* White cards */
-            --header-bg: #ffffff;
-            --text-main: #4a4a4a;      /* Dark Grey text */
-            --text-sub: #5e548e;       /* Purple-grey subtitles */
-            --primary-purple: #bcb4ff; /* Main accent */
-            --soft-mint: #d0f4de;
-            --pop-pink: #ffc8dd;
-            --tag-bg: #f0f0f5;
-            --dot-color: #e1e1e6;
-            --shadow-color: rgba(0, 0, 0, 0.05);
-            --shadow-hover: rgba(188, 180, 255, 0.25);
+            --bg: #faf8f5;
+            --surface: #ffffff;
+            --text: #2d2a26;
+            --muted: #6b6560;
+            --border: #e8e4dc;
+            --accent: #c45c3e;
+            --accent-soft: rgba(196, 92, 62, 0.12);
+            --link: #a34a32;
         }
 
-        /* --- NIGHT THEME VARIABLES --- */
         body.night-mode {
-            --bg-color: #1a1a2e;       /* Deep Midnight Blue */
-            --card-bg: #252542;        /* Lighter Navy for cards */
-            --header-bg: #20203a;
-            --text-main: #e6e6fa;      /* Lavender White text */
-            --text-sub: #b8b8d0;       /* Muted Lavender */
-            --primary-purple: #8c82ff; /* Slightly brighter purple for dark mode */
-            --tag-bg: #303050;
-            --dot-color: #2a2a40;
-            --shadow-color: rgba(0, 0, 0, 0.3);
-            --shadow-hover: rgba(140, 130, 255, 0.4);
+            --bg: #1c1b19;
+            --surface: #252320;
+            --text: #ebe8e3;
+            --muted: #a39e96;
+            --border: #3a3834;
+            --accent: #e07a5f;
+            --accent-soft: rgba(224, 122, 95, 0.15);
+            --link: #f0a090;
+        }
+
+        * {
+            box-sizing: border-box;
         }
 
         body {
-            font-family: 'Quicksand', sans-serif;
-            background-color: var(--bg-color);
-            color: var(--text-main);
+            font-family: 'Source Sans 3', system-ui, sans-serif;
+            font-size: 1.05rem;
+            background: var(--bg);
+            color: var(--text);
             margin: 0;
             padding: 0;
-            line-height: 1.6;
-            background-image: radial-gradient(var(--dot-color) 2px, transparent 2px);
-            background-size: 30px 30px;
-            transition: background-color 0.5s ease, color 0.5s ease;
+            line-height: 1.65;
+            transition: background 0.35s ease, color 0.35s ease;
         }
 
-        /* --- Header --- */
         header {
-            text-align: center;
-            padding: 60px 20px;
-            background: var(--header-bg);
-            border-bottom-left-radius: 50px;
-            border-bottom-right-radius: 50px;
-            box-shadow: 0 4px 20px var(--shadow-color);
-            transition: background-color 0.5s ease;
+            max-width: 42rem;
+            margin: 0 auto;
+            padding: 3.5rem 1.5rem 2.5rem;
+            border-bottom: 1px solid var(--border);
         }
 
         h1 {
-            font-size: 3rem;
-            color: var(--text-main);
-            margin-bottom: 10px;
-            transition: color 0.5s ease;
+            font-family: 'Literata', Georgia, serif;
+            font-size: clamp(1.85rem, 5vw, 2.35rem);
+            font-weight: 600;
+            letter-spacing: -0.02em;
+            margin: 0 0 0.35rem;
+            color: var(--text);
         }
 
         .nickname {
-            color: var(--primary-purple);
-            font-weight: 700;
+            color: var(--muted);
+            font-weight: 400;
         }
 
-        .subtitle {
-            font-size: 1.2rem;
-            background-color: var(--soft-mint);
-            color: #556b2f; 
-            display: inline-block;
-            padding: 10px 20px;
-            border-radius: 30px;
-            margin-top: 10px;
-            font-weight: 600;
+        .tagline {
+            font-family: 'Literata', Georgia, serif;
+            font-size: 1.05rem;
+            color: var(--muted);
+            margin: 0 0 1.25rem;
+            font-style: italic;
         }
 
-        /* --- Layout --- */
-        .container {
-            max-width: 900px;
-            margin: 0 auto;
-            padding: 40px 20px;
+        .meta {
+            font-size: 0.95rem;
+            color: var(--muted);
+            margin: 0 0 1.5rem;
         }
 
-        section {
-            margin-bottom: 50px;
+        .intro {
+            margin: 0 0 1.75rem;
+            max-width: 38rem;
+        }
+
+        .intro a {
+            color: var(--link);
+            text-decoration: underline;
+            text-underline-offset: 3px;
+        }
+
+        .intro a:hover {
+            color: var(--accent);
         }
 
         h2 {
-            font-size: 2rem;
-            text-align: center;
-            color: var(--text-main);
-            margin-bottom: 30px;
-            position: relative;
-            display: inline-block;
-            left: 50%;
-            transform: translateX(-50%);
-            transition: color 0.5s ease;
+            font-family: 'Literata', Georgia, serif;
+            font-size: 1.15rem;
+            font-weight: 600;
+            color: var(--text);
+            margin: 2.5rem 0 1rem;
+            padding-bottom: 0.35rem;
+            border-bottom: 1px solid var(--border);
         }
 
-        h2::after, h2::before {
-            content: '🔮';
-            position: absolute;
-            top: 0;
-            font-size: 1.5rem;
+        .container {
+            max-width: 42rem;
+            margin: 0 auto;
+            padding: 0 1.5rem 4rem;
         }
-        h2::after { right: -40px; }
-        h2::before { left: -40px; }
 
-        /* --- Cards --- */
         .card {
-            background: var(--card-bg);
-            border-radius: 25px;
-            padding: 30px;
-            margin-bottom: 25px;
-            box-shadow: 0 5px 15px var(--shadow-color);
-            border: 3px solid transparent;
-            transition: all 0.3s ease, background-color 0.5s ease;
-            position: relative;
-            overflow: hidden;
+            background: var(--surface);
+            border: 1px solid var(--border);
+            border-radius: 8px;
+            padding: 1.25rem 1.35rem;
+            margin-bottom: 1rem;
+            transition: border-color 0.2s ease, background 0.35s ease;
         }
 
         .card:hover {
-            transform: translateY(-5px);
-            border-color: var(--primary-purple);
-            box-shadow: 0 15px 30px var(--shadow-hover);
+            border-color: var(--muted);
         }
 
         .card-header {
             display: flex;
-            justify-content: space-between;
-            align-items: center;
-            margin-bottom: 15px;
             flex-wrap: wrap;
+            align-items: baseline;
+            gap: 0.5rem 1rem;
+            margin-bottom: 0.5rem;
         }
 
         .card-title {
-            font-size: 1.4rem;
-            font-weight: 700;
-            color: var(--text-main);
-            transition: color 0.5s ease;
+            font-weight: 600;
+            color: var(--text);
         }
 
         .card-role {
-            background-color: var(--primary-purple);
-            color: white;
-            padding: 5px 15px;
-            border-radius: 15px;
             font-size: 0.9rem;
-            font-weight: 600;
+            color: var(--muted);
         }
 
         .card-location {
-            font-size: 0.9rem;
-            color: var(--text-sub);
-            width: 100%;
-            margin-top: 5px;
-            font-weight: 600;
+            font-size: 0.88rem;
+            color: var(--muted);
+            margin-bottom: 0.65rem;
         }
 
         .tag {
             display: inline-block;
-            background-color: var(--tag-bg);
-            border: 1px solid var(--primary-purple);
-            color: var(--text-sub);
-            padding: 4px 10px;
-            border-radius: 12px;
-            font-size: 0.85rem;
-            margin-right: 5px;
-            margin-top: 5px;
-            transition: background-color 0.5s ease, color 0.5s ease;
+            font-size: 0.8rem;
+            padding: 0.2rem 0.55rem;
+            border-radius: 4px;
+            background: var(--accent-soft);
+            color: var(--text);
+            margin: 0.2rem 0.35rem 0 0;
         }
 
-        ul { padding-left: 20px; }
-        li { margin-bottom: 8px; }
+        ul {
+            margin: 0.5rem 0 0;
+            padding-left: 1.15rem;
+        }
 
-        /* --- Footer --- */
-        .footer {
-            text-align: center;
-            margin-top: 60px;
-            padding: 40px;
-            background-color: var(--header-bg);
-            border-top-left-radius: 50px;
-            border-top-right-radius: 50px;
-            box-shadow: 0 -5px 20px var(--shadow-color);
-            transition: background-color 0.5s ease;
+        li {
+            margin-bottom: 0.35rem;
+        }
+
+        .links {
+            margin-top: 0.85rem;
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.5rem 0.65rem;
+        }
+
+        .card-btn {
+            font-size: 0.88rem;
+            font-weight: 500;
+            color: var(--link);
+            text-decoration: none;
+            padding: 0.35rem 0;
+            border-bottom: 1px solid transparent;
+        }
+
+        .card-btn:hover {
+            border-bottom-color: var(--accent);
+            color: var(--accent);
+        }
+
+        .connect {
+            margin-top: 1.75rem;
+        }
+
+        .connect h2 {
+            margin-top: 0;
+        }
+
+        .btn-row {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.65rem;
+            margin-top: 0.75rem;
         }
 
         .btn {
             display: inline-block;
-            background-color: var(--primary-purple);
-            color: white;
+            font-size: 0.92rem;
+            font-weight: 500;
+            color: var(--text);
+            background: var(--surface);
+            border: 1px solid var(--border);
             text-decoration: none;
-            padding: 12px 30px;
-            border-radius: 30px;
-            font-weight: 700;
-            margin: 10px;
-            transition: transform 0.2s;
-            border: none;
+            padding: 0.45rem 1rem;
+            border-radius: 6px;
+            transition: border-color 0.2s, background 0.2s;
         }
+
         .btn:hover {
-            transform: scale(1.05) rotate(-2deg);
+            border-color: var(--accent);
+            background: var(--accent-soft);
         }
 
-        /* --- Floating Toggle Button --- */
-        .toggle-btn {
-            position: fixed;
-            bottom: 30px;
-            right: 30px;
-            width: 60px;
-            height: 60px;
-            background-color: var(--primary-purple);
-            border-radius: 50%;
-            border: none;
-            color: white;
-            font-size: 1.5rem;
-            cursor: pointer;
-            box-shadow: 0 5px 15px rgba(0,0,0,0.2);
-            transition: transform 0.3s ease, background-color 0.3s;
-            z-index: 100;
+        .skills {
             display: flex;
-            align-items: center;
-            justify-content: center;
+            flex-wrap: wrap;
+            gap: 0.5rem;
         }
 
-        .toggle-btn:hover {
-            transform: scale(1.1) rotate(10deg);
-            background-color: var(--text-sub);
+        .skill-pill {
+            font-size: 0.88rem;
+            padding: 0.35rem 0.75rem;
+            border-radius: 6px;
+            border: 1px solid var(--border);
+            background: var(--surface);
+            color: var(--text);
         }
 
-        .bear-icon {
-            font-size: 3rem;
-            display: block;
-            margin-bottom: 10px;
-        }
-        /* --- Cute Card Buttons --- */
-        .card-btn {
-            display: inline-block;
-            padding: 6px 16px;
-            border-radius: 20px;
-            text-decoration: none;
-            font-weight: 700;
-            font-size: 0.9rem;
-            margin-right: 8px;
-            margin-top: 10px;
-            transition: transform 0.2s, box-shadow 0.2s;
-            border: none;
+        .theme-toggle {
+            position: fixed;
+            bottom: 1.25rem;
+            right: 1.25rem;
+            font-family: 'Source Sans 3', sans-serif;
+            font-size: 0.8rem;
+            font-weight: 500;
+            color: var(--muted);
+            background: var(--surface);
+            border: 1px solid var(--border);
+            padding: 0.45rem 0.75rem;
+            border-radius: 6px;
+            cursor: pointer;
+            z-index: 100;
+            transition: border-color 0.2s, color 0.2s;
         }
 
-        .card-btn:hover {
-            transform: translateY(-3px) rotate(-1deg); /* Cute hover bounce */
-            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+        .theme-toggle:hover {
+            border-color: var(--accent);
+            color: var(--accent);
         }
-
-        /* Specific Colors */
-        .github-btn {
-            background-color: var(--text-sub); /* Soft Purple-Grey */
-            color: white;
-        }
-
-        .paper-btn {
-            background-color: var(--pop-pink); /* Baby Pink */
-            color: #555; /* Dark grey text for readability */
-        }
-
-        .hf-btn {
-            background-color: #ffd166; /* Cute Yellow */
-            color: #555;
-        }
-
-        ul { padding-left: 20px; }
-        li { margin-bottom: 8px; }
-
-        .web-btn {
-            background-color: #4bf4d2; /* Cute Yellow */
-            color: #555;
-        }
-
-        ul { padding-left: 20px; }
-        li { margin-bottom: 8px; }
-
     </style>
 </head>
 <body>
 
     <header>
-        <div class="bear-icon">🐻💜</div>
         <h1>Junqi <span class="nickname">(Kuma)</span> Liu</h1>
-        <div class="subtitle"> Vision-Language Model & Medical Image Researcher </div>
-        <p>Seattle, WA 🇺🇸 • jliu452@uw.edu</p>
-        Hi, there! It's Kuma, I'm right now working as a research intern at <strong>Johns Hopkins University</strong> (CCVL Group), 
-        under the supervision of <a href="https://www.zongweiz.com/">Prof. Zongwei Zhou</a>, and <a href="https://www.cs.jhu.edu/~ayuille/">Prof. Alan Yuille</a>. <br>
-        My research interests include <strong>Generative AI</strong>, <strong>Vision-Language Models</strong> 
-        and <strong>Medical Image AI</strong>.<br>
-        <br>
-        <h3>Let's Connect! </h3>
-        <p>I am always open to discussing AI, VLM, Medial Image or Photography! 😊</p>
-        <a href="mailto:jliu452@uw.edu" class="btn">Email Me</a>
-        <a href="https://linkedin.com/in/junqi-liu-453aa0295" class="btn">LinkedIn</a>
-        <a href="https://github.com/KumaKuma2002" class="btn">Github</a>
+        <p class="tagline">Agentic medical AI · Generative medical AI</p>
+        <p class="meta">Seattle, WA · jliu452@uw.edu</p>
+        <p class="intro">
+            Research intern at <strong>Johns Hopkins University</strong> (CCVL), advised by
+            <a href="https://www.zongweiz.com/">Prof. Zongwei Zhou</a> and
+            <a href="https://www.cs.jhu.edu/~ayuille/">Prof. Alan Yuille</a>.
+            I work on <strong>agentic medical AI</strong> and <strong>generative medical AI</strong>
+            (vision-language models, diffusion, and clinical imaging).
+        </p>
+        <div class="connect">
+            <h2>Connect</h2>
+            <p class="intro" style="margin-bottom: 0;">Open to conversations about research and collaboration.</p>
+            <div class="btn-row">
+                <a href="mailto:jliu452@uw.edu" class="btn">Email</a>
+                <a href="https://linkedin.com/in/junqi-liu-453aa0295" class="btn">LinkedIn</a>
+                <a href="https://github.com/KumaKuma2002" class="btn">GitHub</a>
+            </div>
+        </div>
     </header>
 
     <div class="container">
 
         <section>
-            <h2>My Learning Path</h2>
-            
+            <h2>Education</h2>
+
             <div class="card">
                 <div class="card-header">
-                    <span class="card-title">University of Copenhagen 🇩🇰</span>
-                    <span class="card-role">MSc IT & Cognition</span>
+                    <span class="card-title">University of California, Santa Cruz</span>
+                    <span class="card-role">PhD, Computer Science & Engineering (upcoming)</span>
                 </div>
-                <p>Focused on NLP and Computational Cognitive Science.</p>
-                <div>
-                    <span class="tag">NLP</span>
-                    <span class="tag">Cognitive Science</span>
+                <div class="card-location">June 2026 – June 2031 (expected)</div>
+                <p style="margin: 0 0 0.5rem;">Starting CSE doctoral studies.</p>
+            </div>
+
+            <div class="card">
+                <div class="card-header">
+                    <span class="card-title">University of Copenhagen</span>
+                    <span class="card-role">MSc, IT & Cognition</span>
+                </div>
+                <p style="margin: 0 0 0.5rem;">NLP and computational cognitive science.</p>
+                <span class="tag">NLP</span>
+                <span class="tag">Cognitive science</span>
+            </div>
+
+            <div class="card">
+                <div class="card-header">
+                    <span class="card-title">Shanghai Jiao Tong University</span>
+                    <span class="card-role">BEng, Artificial Intelligence</span>
+                </div>
+                <p style="margin: 0 0 0.5rem;">Machine learning, computer vision, reinforcement learning.</p>
+                <span class="tag">Machine learning</span>
+                <span class="tag">Computer vision</span>
+                <span class="tag">NLP</span>
+            </div>
+        </section>
+
+        <section>
+            <h2>Research</h2>
+
+            <div class="card">
+                <div class="card-header">
+                    <span class="card-title">OpenVAE</span>
+                    <span class="card-role">Open source · ongoing</span>
+                </div>
+                <div class="card-location">Medical imaging</div>
+                <ul>
+                    <li>Open-source VAE family for CT/MRI: pretrained latent backbones for medical diffusion (2D/3D KL-VAE and VQ-VAE), trained with perceptual, adversarial, and segmentation-guided objectives at scale.</li>
+                    <li>Weights and model card on Hugging Face; training and benchmark code on GitHub.</li>
+                </ul>
+                <div class="links">
+                    <a href="https://github.com/KumaKuma2002/OpenVAE" target="_blank" rel="noopener" class="card-btn">GitHub</a>
+                    <a href="https://huggingface.co/SMILE-project/OpenVAE" target="_blank" rel="noopener" class="card-btn">Hugging Face</a>
                 </div>
             </div>
 
             <div class="card">
                 <div class="card-header">
-                    <span class="card-title">Shanghai Jiao Tong University 🇨🇳</span>
-                    <span class="card-role">BEng Artificial Intelligence</span>
+                    <span class="card-title">Sumi</span>
+                    <span class="card-role">Medical multi-task agent · ongoing</span>
                 </div>
-                <p>Focused on Machine Learning, Computer Vision, and Reinforcement Learning.</p>
-                <div>
-                    <span class="tag">Machine Learning</span>
-                    <span class="tag">CV</span>
-                    <span class="tag">NLP</span>
+                <div class="card-location">Agentic medical AI</div>
+                <ul>
+                    <li>Ongoing work on a medical multi-task agent: coordinating diverse clinical imaging and reasoning tasks under one agentic framework.</li>
+                </ul>
+            </div>
+
+            <div class="card">
+                <div class="card-header">
+                    <span class="card-title">Diffusion for CT image enhancement (SMILE)</span>
+                    <span class="card-role">Johns Hopkins · CCVL</span>
+                </div>
+                <div class="card-location">May 2025 – present</div>
+                <ul>
+                    <li>Anatomically aware enhancement for medical imaging (SMILE).</li>
+                    <li>~50% better FID; ~10% F1 lift on early tumor detection.</li>
+                    <li>RSNA 2025 oral; submitted to CVPR 2026.</li>
+                </ul>
+                <div class="links">
+                    <a href="https://github.com/MrGiovanni/SMILE" target="_blank" rel="noopener" class="card-btn">Code</a>
+                    <a href="https://www.cs.jhu.edu/~zongwei/preprint/liu2025see.pdf" target="_blank" rel="noopener" class="card-btn">Paper</a>
+                    <a href="https://www.zongweiz.com/dataset" target="_blank" rel="noopener" class="card-btn">Dataset</a>
+                    <a href="https://huggingface.co/MitakaKuma/SMILE" target="_blank" rel="noopener" class="card-btn">Model</a>
+                </div>
+            </div>
+
+            <div class="card">
+                <div class="card-header">
+                    <span class="card-title">Medical imaging — ShapeKit</span>
+                    <span class="card-role">Johns Hopkins · CCVL</span>
+                </div>
+                <div class="card-location">May 2025 – present</div>
+                <ul>
+                    <li>Efficient CT postprocessing pipeline for organ segmentation.</li>
+                    <li>Average DSC improvement over 10% on organ tasks.</li>
+                    <li>MICCAI 2025 poster.</li>
+                </ul>
+                <div class="links">
+                    <a href="https://github.com/BodyMaps/ShapeKit/tree/main" target="_blank" rel="noopener" class="card-btn">Code</a>
+                    <a href="https://arxiv.org/abs/2506.24003" target="_blank" rel="noopener" class="card-btn">Paper</a>
+                </div>
+            </div>
+
+            <div class="card">
+                <div class="card-header">
+                    <span class="card-title">Zebrafish tracking</span>
+                    <span class="card-role">University of Copenhagen · Kermen Lab</span>
+                </div>
+                <div class="card-location">Oct 2024 – May 2025</div>
+                <ul>
+                    <li>Multi-attention model for zebrafish movement detection.</li>
+                    <li>~80% sensitivity, ~90% specificity.</li>
+                    <li>Manuscript in preparation (PNAS).</li>
+                </ul>
+                <div class="links">
+                    <a href="https://github.com/KumaKuma2002/ZATA" target="_blank" rel="noopener" class="card-btn">Code</a>
+                </div>
+            </div>
+
+            <div class="card">
+                <div class="card-header">
+                    <span class="card-title">Explainable AI for optimization</span>
+                    <span class="card-role">Shanghai AI Lab & SJTU · Yes Lab</span>
+                </div>
+                <div class="card-location">Oct 2022 – Oct 2023</div>
+                <ul>
+                    <li>Bayesian optimization for multi-site geological modeling.</li>
+                    <li>~50% accuracy gain with large reduction in compute time.</li>
+                </ul>
+                <div class="links">
+                    <a href="https://tempmpm.readthedocs.io/en/latest/mpm.html" target="_blank" rel="noopener" class="card-btn">Docs</a>
                 </div>
             </div>
         </section>
 
         <section>
-            <h2>Research Adventures</h2>
-            <div class="card">
-                <div class="card-header">
-                    <span class="card-title">Diffusion Model in CT Image Enhancement</span>
-                    <span class="card-role">Johns Hopkins University</span>
-                </div>
-                <div class="card-location">📍 CCVL Group | May 2025 - Present</div>
-                <ul>
-                    <li><strong>Mission:</strong> Developed "SMILE," the anatomical aware image enhancement tool for medical image enhancement.</li>
-                    <li><strong>Achievement:</strong> 50% better FID in image quality, and 10% lift for F1-score in early tumor detection.</li>
-                    <li><strong>Publication:</strong> <strong>RSNA 2025 oral</strong> presentation !🎤 & Submitted to CVPR 2026 🚀.</li>
-                </ul>
-                <div>
-                    <a href="https://github.com/MrGiovanni/SMILE" target="_blank" class="card-btn github-btn">
-                        🐙 Code 
-                    </a>
-                    <a href="https://www.cs.jhu.edu/~zongwei/preprint/liu2025see.pdf" target="_blank" class="card-btn paper-btn">
-                        📜 Paper 
-                    </a>
-                    <a href="https://www.zongweiz.com/dataset" target="_blank" class="card-btn web-btn">
-                        🌍 Website 
-                    </a>
-                    <a href="https://huggingface.co/MitakaKuma/SMILE" target="_blank" class="card-btn hf-btn">
-                        🤖 Model 
-                    </a>
-                </div>
-            </div>
-
-            <div class="card">
-                <div class="card-header">
-                    <span class="card-title">Medical Imaging (ShapeKit)</span>
-                    <span class="card-role">Johns Hopkins University</span>
-                </div>
-                <div class="card-location">📍 CCVL Group | May 2025 - Present</div>
-                <ul>
-                    <li><strong>Mission:</strong> Developed "ShapeKit," an efficient CT postprocessing pipeline.</li>
-                    <li><strong>Achievement:</strong> Lift average over 10% DSC score on organ segmentations.</li>
-                    <li><strong>Publication:</strong> <strong>MICCAI 2025 </strong> poster presentation !🎉</li>
-                </ul>
-                <div>
-                    <a href="https://github.com/BodyMaps/ShapeKit/tree/main" target="_blank" class="card-btn github-btn">
-                        🐙 Code 
-                    </a>
-                    <a href="https://arxiv.org/abs/2506.24003" target="_blank" class="card-btn paper-btn">
-                        📜 Paper 
-                    </a>
-                </div>
-            </div>
-
-            <div class="card">
-                <div class="card-header">
-                    <span class="card-title">Zebrafish Tracking AI</span>
-                    <span class="card-role">University of Copenhagen</span>
-                </div>
-                <div class="card-location">📍 Kermen Lab (Neuroscience) | Oct 2024 - May 2025</div>
-                <ul>
-                    <li><strong>Mission:</strong> Developed a Multi-Attention tracking model to detect Zebrafish biological movements. 🐟</li>
-                    <li><strong>Achievement:</strong> Over 80% sensitivity and 90% specificity. </li>
-                    <li><strong>Publication:</strong> Submitting a paper to PNAS journal 🚀.</li>
-
-                </ul>
-                <div>
-                    <a href="https://github.com/KumaKuma2002/ZATA" target="_blank" class="card-btn github-btn">
-                        🐙 Code 
-                    </a>
-                </div>
-            </div>
-
-            <div class="card">
-                <div class="card-header">
-                    <span class="card-title">Explainable AI for Optimization</span>
-                    <span class="card-role">Shanghai AI Lab & SJTU</span>
-                </div>
-                <div class="card-location">📍 Yes Lab | Oct 2022 - Oct 2023</div>
-                <ul>
-                    <li><strong>Mission:</strong> Innovative design for Bayesian Optimization, for multi-location geological perspective task.</li>
-                    <li><strong>Achievement:</strong> Lifted accuracy by 50%, and saved at least 90% time consumption! 🚀</li>
-                </ul>
-                <div>
-                    <a href="https://tempmpm.readthedocs.io/en/latest/mpm.html" target="_blank" class="card-btn web-btn">
-                        🌍 website 
-                    </a>
-                </div>
+            <h2>Skills</h2>
+            <div class="skills">
+                <span class="skill-pill">AI agents & tool use</span>
+                <span class="skill-pill">LLM / VLM systems</span>
+                <span class="skill-pill">Diffusion & latent generative models</span>
+                <span class="skill-pill">Multimodal foundation models</span>
+                <span class="skill-pill">RAG & retrieval-augmented pipelines</span>
+                <span class="skill-pill">Medical imaging ML</span>
             </div>
         </section>
-
-        <section>
-            <h2>Skills & Magic</h2>
-            <div style="text-align: center;">
-                <span class="btn" style="background-color: var(--pop-pink); color: #555; cursor: default;">Python 🐍</span>
-                <span class="btn" style="background-color: var(--primary-purple); cursor: default;">PyTorch 🔥</span>
-                <span class="btn" style="background-color: var(--soft-mint); color: #556b2f; cursor: default;">Tensorflow</span>
-                <span class="btn" style="background-color: #ffd166; color: #555; cursor: default;">SQL</span>
-                <span class="btn" style="background-color: #a2d2ff; color: #444; cursor: default;">Data Viz</span>
-            </div>
-        </section>
-
     </div>
 
-
-
-    <button class="toggle-btn" onclick="toggleTheme()">🌙</button>
+    <button type="button" class="theme-toggle" onclick="toggleTheme()" aria-label="Toggle color theme">Dark mode</button>
 
     <script>
         function toggleTheme() {
             const body = document.body;
-            const btn = document.querySelector('.toggle-btn');
-            
-            // Toggle the class
+            const btn = document.querySelector('.theme-toggle');
             body.classList.toggle('night-mode');
-            
-            // Change the icon based on mode
-            if (body.classList.contains('night-mode')) {
-                btn.innerHTML = '☀️'; // Switch icon to Sun
-            } else {
-                btn.innerHTML = '🌙'; // Switch icon to Moon
-            }
+            btn.textContent = body.classList.contains('night-mode') ? 'Light mode' : 'Dark mode';
         }
     </script>
 
