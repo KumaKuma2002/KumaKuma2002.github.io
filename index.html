@@ -17,6 +17,7 @@
             --accent: #c45c3e;
             --accent-soft: rgba(196, 92, 62, 0.12);
             --link: #a34a32;
+            --sidebar-bg: #f3f0eb;
         }
 
         body.night-mode {
@@ -28,11 +29,10 @@
             --accent: #e07a5f;
             --accent-soft: rgba(224, 122, 95, 0.15);
             --link: #f0a090;
+            --sidebar-bg: #201f1d;
         }
 
-        * {
-            box-sizing: border-box;
-        }
+        * { box-sizing: border-box; }
 
         body {
             font-family: 'Source Sans 3', system-ui, sans-serif;
@@ -45,55 +45,98 @@
             transition: background 0.35s ease, color 0.35s ease;
         }
 
-        header {
-            max-width: 42rem;
-            margin: 0 auto;
-            padding: 3.5rem 1.5rem 2.5rem;
-            border-bottom: 1px solid var(--border);
+        /* ── Two-column layout ── */
+        .layout {
+            display: grid;
+            grid-template-columns: 22rem 1fr;
+            min-height: 100vh;
+            align-items: start;
         }
 
+        /* ── Left sidebar ── */
+        .sidebar {
+            background: var(--sidebar-bg);
+            border-right: 1px solid var(--border);
+            padding: 3rem 1.75rem 4rem;
+            position: sticky;
+            top: 0;
+            height: 100vh;
+            overflow-y: auto;
+            transition: background 0.35s ease, border-color 0.35s ease;
+        }
+
+        .sidebar::-webkit-scrollbar { width: 4px; }
+        .sidebar::-webkit-scrollbar-thumb { background: var(--border); border-radius: 2px; }
+
+        /* ── Right main ── */
+        .main {
+            padding: 3rem 2.5rem 5rem 2.5rem;
+            max-width: 52rem;
+        }
+
+        /* ── Typography ── */
         h1 {
             font-family: 'Literata', Georgia, serif;
-            font-size: clamp(1.85rem, 5vw, 2.35rem);
+            font-size: clamp(1.65rem, 3vw, 2.1rem);
             font-weight: 600;
             letter-spacing: -0.02em;
-            margin: 0 0 0.35rem;
+            margin: 0 0 0.3rem;
             color: var(--text);
         }
 
-        .nickname {
-            color: var(--muted);
-            font-weight: 400;
-        }
+        .nickname { color: var(--muted); font-weight: 400; }
 
         .tagline {
             font-family: 'Literata', Georgia, serif;
-            font-size: 1.05rem;
+            font-size: 0.98rem;
             color: var(--muted);
-            margin: 0 0 1.25rem;
+            margin: 0 0 1rem;
             font-style: italic;
         }
 
         .meta {
-            font-size: 0.95rem;
+            font-size: 0.9rem;
             color: var(--muted);
-            margin: 0 0 1.5rem;
+            margin: 0 0 1.25rem;
         }
 
         .intro {
-            margin: 0 0 1.75rem;
-            max-width: 38rem;
+            font-size: 0.97rem;
+            margin: 0 0 1.5rem;
+            line-height: 1.7;
         }
 
-        .intro a {
+        .intro a, .sidebar a {
             color: var(--link);
             text-decoration: underline;
             text-underline-offset: 3px;
         }
 
-        .intro a:hover {
-            color: var(--accent);
+        .intro a:hover, .sidebar a:hover { color: var(--accent); }
+
+        h2 {
+            font-family: 'Literata', Georgia, serif;
+            font-size: 1.05rem;
+            font-weight: 600;
+            color: var(--text);
+            margin: 2rem 0 0.85rem;
+            padding-bottom: 0.3rem;
+            border-bottom: 1px solid var(--border);
         }
+
+        h2:first-of-type { margin-top: 0; }
+
+        /* ── Cards ── */
+        .card {
+            background: var(--surface);
+            border: 1px solid var(--border);
+            border-radius: 10px;
+            padding: 1.1rem 1.25rem;
+            margin-bottom: 0.9rem;
+            transition: border-color 0.2s ease, background 0.35s ease;
+        }
+
+        .card:hover { border-color: var(--muted); }
 
         .card a {
             color: var(--link);
@@ -101,95 +144,55 @@
             text-underline-offset: 3px;
         }
 
-        .card a:hover {
-            color: var(--accent);
-        }
-
-        h2 {
-            font-family: 'Literata', Georgia, serif;
-            font-size: 1.15rem;
-            font-weight: 600;
-            color: var(--text);
-            margin: 2.5rem 0 1rem;
-            padding-bottom: 0.35rem;
-            border-bottom: 1px solid var(--border);
-        }
-
-        .container {
-            max-width: 42rem;
-            margin: 0 auto;
-            padding: 0 1.5rem 4rem;
-        }
-
-        .card {
-            background: var(--surface);
-            border: 1px solid var(--border);
-            border-radius: 8px;
-            padding: 1.25rem 1.35rem;
-            margin-bottom: 1rem;
-            transition: border-color 0.2s ease, background 0.35s ease;
-        }
-
-        .card:hover {
-            border-color: var(--muted);
-        }
+        .card a:hover { color: var(--accent); }
 
         .card-header {
             display: flex;
             flex-wrap: wrap;
             align-items: baseline;
-            gap: 0.5rem 1rem;
-            margin-bottom: 0.5rem;
+            gap: 0.4rem 0.85rem;
+            margin-bottom: 0.4rem;
         }
 
-        .card-title {
-            font-weight: 600;
-            color: var(--text);
-        }
+        .card-title { font-weight: 600; color: var(--text); }
 
         .card-role {
-            font-size: 0.9rem;
+            font-size: 0.88rem;
             color: var(--muted);
         }
 
         .card-location {
-            font-size: 0.88rem;
+            font-size: 0.85rem;
             color: var(--muted);
-            margin-bottom: 0.65rem;
+            margin-bottom: 0.5rem;
         }
 
         .tag {
             display: inline-block;
-            font-size: 0.8rem;
-            padding: 0.2rem 0.55rem;
+            font-size: 0.78rem;
+            padding: 0.18rem 0.5rem;
             border-radius: 4px;
             background: var(--accent-soft);
             color: var(--text);
-            margin: 0.2rem 0.35rem 0 0;
+            margin: 0.2rem 0.3rem 0 0;
         }
 
-        ul {
-            margin: 0.5rem 0 0;
-            padding-left: 1.15rem;
-        }
-
-        li {
-            margin-bottom: 0.35rem;
-        }
+        ul { margin: 0.4rem 0 0; padding-left: 1.1rem; }
+        li { margin-bottom: 0.3rem; font-size: 0.97rem; }
 
         .links {
-            margin-top: 0.85rem;
+            margin-top: 0.75rem;
             display: flex;
             flex-wrap: wrap;
-            gap: 0.5rem 0.65rem;
+            gap: 0.45rem 0.6rem;
         }
 
         .card-btn {
-            font-size: 0.88rem;
+            font-size: 0.86rem;
             font-weight: 500;
             color: var(--link);
             text-decoration: none;
-            padding: 0.35rem 0;
+            padding: 0.3rem 0;
             border-bottom: 1px solid transparent;
         }
 
@@ -198,30 +201,58 @@
             color: var(--accent);
         }
 
-        .connect {
-            margin-top: 1.75rem;
+        /* ── Sidebar edu cards (compact) ── */
+        .edu-card {
+            padding: 0.85rem 1rem;
+            border-radius: 8px;
+            border: 1px solid var(--border);
+            background: var(--surface);
+            margin-bottom: 0.75rem;
+            transition: border-color 0.2s ease, background 0.35s ease;
         }
 
-        .connect h2 {
-            margin-top: 0;
+        .edu-card:hover { border-color: var(--muted); }
+
+        .edu-school {
+            font-weight: 600;
+            font-size: 0.95rem;
+            color: var(--text);
         }
+
+        .edu-degree {
+            font-size: 0.85rem;
+            color: var(--muted);
+            margin: 0.15rem 0 0.35rem;
+        }
+
+        .edu-note {
+            font-size: 0.88rem;
+            color: var(--text);
+            margin: 0;
+        }
+
+        .edu-note a { color: var(--link); text-decoration: underline; text-underline-offset: 3px; }
+        .edu-note a:hover { color: var(--accent); }
+
+        /* ── Connect ── */
+        .connect { margin-top: 1.5rem; }
 
         .btn-row {
             display: flex;
             flex-wrap: wrap;
-            gap: 0.65rem;
-            margin-top: 0.75rem;
+            gap: 0.5rem;
+            margin-top: 0.6rem;
         }
 
         .btn {
             display: inline-block;
-            font-size: 0.92rem;
+            font-size: 0.88rem;
             font-weight: 500;
             color: var(--text);
             background: var(--surface);
             border: 1px solid var(--border);
             text-decoration: none;
-            padding: 0.45rem 1rem;
+            padding: 0.4rem 0.9rem;
             border-radius: 6px;
             transition: border-color 0.2s, background 0.2s;
         }
@@ -231,6 +262,7 @@
             background: var(--accent-soft);
         }
 
+        /* ── Skills ── */
         .skills {
             display: flex;
             flex-wrap: wrap;
@@ -246,88 +278,108 @@
             color: var(--text);
         }
 
+        /* ── Theme toggle ── */
         .theme-toggle {
             position: fixed;
-            bottom: 1.25rem;
-            right: 1.25rem;
+            bottom: 1.5rem;
+            right: 1.5rem;
             font-family: 'Source Sans 3', sans-serif;
-            font-size: 0.8rem;
-            font-weight: 500;
+            font-size: 1rem;
+            font-weight: 600;
             color: var(--muted);
             background: var(--surface);
-            border: 1px solid var(--border);
-            padding: 0.45rem 0.75rem;
-            border-radius: 6px;
+            border: 1.5px solid var(--border);
+            padding: 0.65rem 1.35rem;
+            border-radius: 8px;
             cursor: pointer;
             z-index: 100;
-            transition: border-color 0.2s, color 0.2s;
+            transition: border-color 0.2s, color 0.2s, background 0.35s;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.07);
         }
 
         .theme-toggle:hover {
             border-color: var(--accent);
             color: var(--accent);
         }
+
+        /* ── Responsive ── */
+        @media (max-width: 800px) {
+            .layout {
+                grid-template-columns: 1fr;
+            }
+
+            .sidebar {
+                position: static;
+                height: auto;
+                border-right: none;
+                border-bottom: 1px solid var(--border);
+                padding: 2.5rem 1.5rem 2rem;
+            }
+
+            .main {
+                padding: 2rem 1.5rem 5rem;
+            }
+        }
     </style>
 </head>
 <body>
 
-    <header>
+<div class="layout">
+
+    <!-- ── LEFT: Personal info + Education ── -->
+    <aside class="sidebar">
         <h1>Junqi <span class="nickname">(Kuma)</span> Liu</h1>
         <p class="tagline">Agentic medical AI · Generative medical AI</p>
-        <p class="meta">Seattle, WA · jliu452@uw.edu</p>
+        <p class="meta">Santa Cruz, CA · jliu452@uw.edu</p>
+
         <p class="intro">
+            Under supervision of <a href="https://yuyinzhou.github.io/">Prof. Yuyin Zhou</a> and
+            <a href="https://cihangxie.github.io/">Prof. Cihang Xie</a> at <strong>UC Santa Cruz</strong>.
             Research intern at <strong>Johns Hopkins University</strong> (CCVL), advised by
             <a href="https://www.zongweiz.com/">Prof. Zongwei Zhou</a> and
             <a href="https://www.cs.jhu.edu/~ayuille/">Prof. Alan Yuille</a>.
             I work on <strong>agentic medical AI</strong> and <strong>generative medical AI</strong>
             (vision-language models, diffusion, and clinical imaging).
         </p>
+
         <div class="connect">
             <h2>Connect</h2>
-            <p class="intro" style="margin-bottom: 0;">Open to conversations about research and collaboration.</p>
+            <p style="font-size: 0.9rem; color: var(--muted); margin: 0 0 0.5rem;">Open to research conversations and collaboration.</p>
             <div class="btn-row">
                 <a href="mailto:jliu452@uw.edu" class="btn">Email</a>
                 <a href="https://linkedin.com/in/junqi-liu-453aa0295" class="btn">LinkedIn</a>
                 <a href="https://github.com/KumaKuma2002" class="btn">GitHub</a>
             </div>
         </div>
-    </header>
 
-    <div class="container">
+        <h2>Education</h2>
 
-        <section>
-            <h2>Education</h2>
+        <div class="edu-card">
+            <div class="edu-school">UC Santa Cruz</div>
+            <div class="edu-degree">PhD, Computer Science & Engineering · 2026–2031</div>
+            <p class="edu-note">Advised by <a href="https://yuyinzhou.github.io/">Prof. Yuyin Zhou</a> and <a href="https://cihangxie.github.io/">Prof. Cihang Xie</a>.</p>
+        </div>
 
-            <div class="card">
-                <div class="card-header">
-                    <span class="card-title">University of California, Santa Cruz</span>
-                    <span class="card-role">PhD, Computer Science & Engineering (upcoming)</span>
-                </div>
-                <div class="card-location">June 2026 – June 2031 (expected)</div>
-                <p style="margin: 0 0 0.5rem;">Advised by <a href="https://yuyinzhou.github.io/">Prof. Yuyin Zhou</a> and <a href="https://cihangxie.github.io/">Prof. Cihang Xie</a>.</p>
-            </div>
+        <div class="edu-card">
+            <div class="edu-school">University of Copenhagen</div>
+            <div class="edu-degree">MSc, IT & Cognition</div>
+            <p class="edu-note">NLP and computational cognitive science.</p>
+            <span class="tag">NLP</span>
+            <span class="tag">Cognitive science</span>
+        </div>
 
-            <div class="card">
-                <div class="card-header">
-                    <span class="card-title">University of Copenhagen</span>
-                    <span class="card-role">MSc, IT & Cognition</span>
-                </div>
-                <p style="margin: 0 0 0.5rem;">NLP and computational cognitive science.</p>
-                <span class="tag">NLP</span>
-                <span class="tag">Cognitive science</span>
-            </div>
+        <div class="edu-card">
+            <div class="edu-school">Shanghai Jiao Tong University</div>
+            <div class="edu-degree">BEng, Artificial Intelligence</div>
+            <p class="edu-note">ML, computer vision, RL. Advised by <a href="https://jhc.sjtu.edu.cn/people/members/faculty/nanyang-ye.html">Prof. Nanyang Ye</a>.</p>
+            <span class="tag">Machine learning</span>
+            <span class="tag">Computer vision</span>
+            <span class="tag">NLP</span>
+        </div>
+    </aside>
 
-            <div class="card">
-                <div class="card-header">
-                    <span class="card-title">Shanghai Jiao Tong University</span>
-                    <span class="card-role">BEng, Artificial Intelligence</span>
-                </div>
-                <p style="margin: 0 0 0.5rem;">Machine learning, computer vision, reinforcement learning. Advised by <a href="https://jhc.sjtu.edu.cn/people/members/faculty/nanyang-ye.html">Prof. Nanyang Ye</a>.</p>
-                <span class="tag">Machine learning</span>
-                <span class="tag">Computer vision</span>
-                <span class="tag">NLP</span>
-            </div>
-        </section>
+    <!-- ── RIGHT: Research + Skills ── -->
+    <main class="main">
 
         <section>
             <h2>Research</h2>
@@ -345,13 +397,14 @@
                 <div class="links">
                     <a href="https://github.com/KumaKuma2002/OpenVAE" target="_blank" rel="noopener" class="card-btn">GitHub</a>
                     <a href="https://huggingface.co/SMILE-project/OpenVAE" target="_blank" rel="noopener" class="card-btn">Hugging Face</a>
+                    <a href="https://arxiv.org/abs/2604.07329" target="_blank" rel="noopener" class="card-btn">Paper</a>
                 </div>
             </div>
 
             <div class="card">
                 <div class="card-header">
-                    <span class="card-title">Sumi</span>
-                    <span class="card-role">Medical multi-task agent · ongoing</span>
+                    <span class="card-title">Autonomous Medical Research</span>
+                    <span class="card-role">Agentic medical AI · ongoing</span>
                 </div>
                 <div class="card-location">Agentic medical AI</div>
                 <ul>
@@ -368,7 +421,6 @@
                 <ul>
                     <li>Anatomically aware enhancement for medical imaging (SMILE).</li>
                     <li>~50% better FID; ~10% F1 lift on early tumor detection.</li>
-                    <li>RSNA 2025 oral; submitted to CVPR 2026.</li>
                 </ul>
                 <div class="links">
                     <a href="https://github.com/MrGiovanni/SMILE" target="_blank" rel="noopener" class="card-btn">Code</a>
@@ -435,18 +487,20 @@
                 <span class="skill-pill">AI agents</span>
             </div>
         </section>
-    </div>
 
-    <button type="button" class="theme-toggle" onclick="toggleTheme()" aria-label="Toggle color theme">Dark mode</button>
+    </main>
+</div>
 
-    <script>
-        function toggleTheme() {
-            const body = document.body;
-            const btn = document.querySelector('.theme-toggle');
-            body.classList.toggle('night-mode');
-            btn.textContent = body.classList.contains('night-mode') ? 'Light mode' : 'Dark mode';
-        }
-    </script>
+<button type="button" class="theme-toggle" onclick="toggleTheme()" aria-label="Toggle color theme">Dark mode</button>
+
+<script>
+    function toggleTheme() {
+        const body = document.body;
+        const btn = document.querySelector('.theme-toggle');
+        body.classList.toggle('night-mode');
+        btn.textContent = body.classList.contains('night-mode') ? 'Light mode' : 'Dark mode';
+    }
+</script>
 
 </body>
 </html>
