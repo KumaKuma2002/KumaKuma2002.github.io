@@ -3,279 +3,380 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Junqi (Kuma) Liu | AI Researcher</title>
+    <title>Kuma (Junqi Liu) | AI Researcher</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Literata:ital,opsz,wght@0,7..72,400;0,7..72,600;1,7..72,400&family=Source+Sans+3:ital,wght@0,400;0,500;0,600;1,400&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600;9..144,700&family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+    <script>
+        (function () {
+            try {
+                var saved = localStorage.getItem('kuma.theme');
+                document.documentElement.dataset.theme = saved || 'dark';
+            } catch (e) { document.documentElement.dataset.theme = 'dark'; }
+        })();
+    </script>
     <style>
+        /* ── AutoMedBench / Oregon Forest palette ── */
         :root {
-            --bg: #faf8f5;
-            --surface: #ffffff;
-            --text: #2d2a26;
-            --muted: #6b6560;
-            --border: #e8e4dc;
-            --accent: #c45c3e;
-            --accent-soft: rgba(196, 92, 62, 0.12);
-            --link: #a34a32;
-            --sidebar-bg: #f3f0eb;
+            --bg: #F6F1E6;
+            --panel: #FAF6EE;
+            --ink: #3B4538;
+            --ink-soft: #737A6D;
+            --ink-mute: #A1A79A;
+            --edge: #ECE4D2;
+            --grid: #F0EADA;
+            --primary: #4A7355;
+            --primary-hover: #3E6248;
+            --primary-soft: #E6EDE5;
+            --moss: #83996E;
+            --walnut: #A08666;
+            --amber-bark: #D2B684;
+            --amber-soft: #F6EDDB;
+            --card-hover: #F1ECDE;
+            --shadow: 0 1px 1px rgba(60,70,58,0.018), 0 2px 4px rgba(60,70,58,0.025);
         }
 
-        body.night-mode {
-            --bg: #1c1b19;
-            --surface: #252320;
-            --text: #ebe8e3;
-            --muted: #a39e96;
-            --border: #3a3834;
-            --accent: #e07a5f;
-            --accent-soft: rgba(224, 122, 95, 0.15);
-            --link: #f0a090;
-            --sidebar-bg: #201f1d;
+        :root[data-theme="dark"] {
+            --bg: #141812;
+            --panel: #1C201B;
+            --ink: #E4E6DC;
+            --ink-soft: #A0A69A;
+            --ink-mute: #6E746A;
+            --edge: #2A2E28;
+            --grid: #23271F;
+            --primary: #84B38D;
+            --primary-hover: #9CC7A4;
+            --primary-soft: #1E2B21;
+            --moss: #7E9770;
+            --walnut: #C6A98A;
+            --amber-bark: #D4B886;
+            --amber-soft: #2A241B;
+            --card-hover: #202520;
+            --shadow: 0 1px 2px rgba(0,0,0,0.40), 0 4px 10px rgba(0,0,0,0.28);
         }
 
         * { box-sizing: border-box; }
 
-        body {
-            font-family: 'Source Sans 3', system-ui, sans-serif;
-            font-size: 1.05rem;
-            background: var(--bg);
-            color: var(--text);
-            margin: 0;
-            padding: 0;
-            line-height: 1.65;
-            transition: background 0.35s ease, color 0.35s ease;
+        html, body {
+            margin: 0; padding: 0;
+            background: var(--bg); color: var(--ink);
+            font-family: 'Inter', system-ui, -apple-system, sans-serif;
+            font-size: 15px; line-height: 1.6;
+            -webkit-font-smoothing: antialiased;
+            transition: background-color 0.25s ease, color 0.25s ease;
         }
 
-        /* ── Two-column layout ── */
+        h1, h2, h3 {
+            font-family: 'Fraunces', Georgia, serif;
+            font-weight: 600;
+            letter-spacing: -0.015em;
+            color: var(--ink);
+            margin: 0;
+        }
+
+        a { color: var(--primary); text-decoration: none; }
+        a:hover { color: var(--primary-hover); text-decoration: underline; text-underline-offset: 3px; }
+
+        /* ── Centered cozy container ── */
         .layout {
             display: grid;
-            grid-template-columns: 22rem 1fr;
-            min-height: 100vh;
+            grid-template-columns: 23rem 1fr;
+            gap: 3rem;
+            max-width: 78rem;
+            margin: 0 auto;
+            padding: 3.5rem 3rem 5rem;
             align-items: start;
         }
 
-        /* ── Left sidebar ── */
+        /* ── Sidebar ── */
         .sidebar {
-            background: var(--sidebar-bg);
-            border-right: 1px solid var(--border);
-            padding: 3rem 1.75rem 4rem;
+            background: var(--panel);
+            border: 1px solid var(--edge);
+            border-radius: 14px;
+            padding: 2rem 1.75rem 2.25rem;
             position: sticky;
-            top: 0;
-            height: 100vh;
-            overflow-y: auto;
-            transition: background 0.35s ease, border-color 0.35s ease;
+            top: 2rem;
+            box-shadow: var(--shadow);
         }
 
-        .sidebar::-webkit-scrollbar { width: 4px; }
-        .sidebar::-webkit-scrollbar-thumb { background: var(--border); border-radius: 2px; }
+        .main { min-width: 0; padding-top: 0.25rem; }
 
-        /* ── Right main ── */
-        .main {
-            padding: 3rem 2.5rem 5rem 2.5rem;
-            max-width: 52rem;
-        }
-
-        /* ── Typography ── */
         h1 {
-            font-family: 'Literata', Georgia, serif;
-            font-size: clamp(1.65rem, 3vw, 2.1rem);
-            font-weight: 600;
-            letter-spacing: -0.02em;
-            margin: 0 0 0.3rem;
-            color: var(--text);
+            font-size: clamp(1.65rem, 2.6vw, 2rem);
+            margin: 0 0 0.35rem;
+            line-height: 1.2;
         }
 
-        .nickname { color: var(--muted); font-weight: 400; }
+        .nickname { color: var(--ink-soft); font-weight: 400; font-style: italic; }
 
         .tagline {
-            font-family: 'Literata', Georgia, serif;
+            font-family: 'Fraunces', Georgia, serif;
             font-size: 0.98rem;
-            color: var(--muted);
-            margin: 0 0 1rem;
+            color: var(--ink-soft);
+            margin: 0 0 0.85rem;
             font-style: italic;
+            line-height: 1.55;
         }
 
         .meta {
-            font-size: 0.9rem;
-            color: var(--muted);
+            font-size: 0.82rem;
+            color: var(--ink-mute);
             margin: 0 0 1.25rem;
+            font-family: 'JetBrains Mono', monospace;
         }
 
         .intro {
-            font-size: 0.97rem;
+            font-size: 0.92rem;
             margin: 0 0 1.5rem;
-            line-height: 1.7;
+            line-height: 1.65;
+            color: var(--ink);
         }
-
-        .intro a, .sidebar a {
-            color: var(--link);
-            text-decoration: underline;
-            text-underline-offset: 3px;
-        }
-
-        .intro a:hover, .sidebar a:hover { color: var(--accent); }
 
         h2 {
-            font-family: 'Literata', Georgia, serif;
-            font-size: 1.05rem;
-            font-weight: 600;
-            color: var(--text);
-            margin: 2rem 0 0.85rem;
-            padding-bottom: 0.3rem;
-            border-bottom: 1px solid var(--border);
+            font-size: 1rem;
+            margin: 1.75rem 0 0.85rem;
+            padding-bottom: 0.45rem;
+            border-bottom: 1px solid var(--edge);
         }
 
         h2:first-of-type { margin-top: 0; }
 
+        .main h2 {
+            font-size: 1.2rem;
+            margin: 2.25rem 0 1.1rem;
+        }
+
+        .main h2:first-of-type { margin-top: 0; }
+
         /* ── Cards ── */
         .card {
-            background: var(--surface);
-            border: 1px solid var(--border);
-            border-radius: 10px;
-            padding: 1.1rem 1.25rem;
+            background: var(--panel);
+            border: 1px solid var(--edge);
+            border-radius: 12px;
+            padding: 1.15rem 1.35rem 1.25rem;
             margin-bottom: 0.9rem;
-            transition: border-color 0.2s ease, background 0.35s ease;
+            transition: border-color 0.18s ease, background 0.25s ease;
+            box-shadow: var(--shadow);
         }
 
-        .card:hover { border-color: var(--muted); }
-
-        .card a {
-            color: var(--link);
-            text-decoration: underline;
-            text-underline-offset: 3px;
+        .card:hover {
+            border-color: var(--primary);
+            background: var(--card-hover);
         }
-
-        .card a:hover { color: var(--accent); }
 
         .card-header {
             display: flex;
             flex-wrap: wrap;
             align-items: baseline;
             gap: 0.4rem 0.85rem;
-            margin-bottom: 0.4rem;
+            margin-bottom: 0.35rem;
         }
 
-        .card-title { font-weight: 600; color: var(--text); }
+        .card-title {
+            font-family: 'Fraunces', Georgia, serif;
+            font-size: 1.05rem;
+            font-weight: 600;
+            color: var(--ink);
+            letter-spacing: -0.01em;
+        }
 
         .card-role {
-            font-size: 0.88rem;
-            color: var(--muted);
+            font-size: 0.83rem;
+            color: var(--ink-soft);
         }
 
         .card-location {
-            font-size: 0.85rem;
-            color: var(--muted);
+            font-size: 0.82rem;
+            color: var(--ink-mute);
             margin-bottom: 0.5rem;
+            font-family: 'JetBrains Mono', monospace;
         }
 
         .tag {
             display: inline-block;
-            font-size: 0.78rem;
-            padding: 0.18rem 0.5rem;
-            border-radius: 4px;
-            background: var(--accent-soft);
-            color: var(--text);
-            margin: 0.2rem 0.3rem 0 0;
+            font-size: 0.74rem;
+            font-weight: 500;
+            padding: 0.18rem 0.55rem;
+            border-radius: 999px;
+            background: var(--amber-soft);
+            color: var(--walnut);
+            margin: 0.3rem 0.3rem 0 0;
+            border: 1px solid transparent;
         }
 
-        ul { margin: 0.4rem 0 0; padding-left: 1.1rem; }
-        li { margin-bottom: 0.3rem; font-size: 0.97rem; }
+        ul { margin: 0.4rem 0 0; padding-left: 1.15rem; }
+        li { margin-bottom: 0.3rem; font-size: 0.92rem; line-height: 1.6; color: var(--ink); }
+        li::marker { color: var(--ink-mute); }
 
         .links {
-            margin-top: 0.75rem;
+            margin-top: 0.85rem;
             display: flex;
             flex-wrap: wrap;
-            gap: 0.45rem 0.6rem;
+            gap: 0.4rem 0.6rem;
         }
 
         .card-btn {
-            font-size: 0.86rem;
+            font-size: 0.83rem;
             font-weight: 500;
-            color: var(--link);
+            color: var(--primary);
             text-decoration: none;
-            padding: 0.3rem 0;
-            border-bottom: 1px solid transparent;
+            padding: 0.22rem 0.55rem;
+            border: 1px solid var(--edge);
+            border-radius: 6px;
+            transition: color 0.15s, border-color 0.15s, background 0.15s;
         }
 
         .card-btn:hover {
-            border-bottom-color: var(--accent);
-            color: var(--accent);
+            border-color: var(--primary);
+            background: var(--primary-soft);
+            color: var(--primary-hover);
+            text-decoration: none;
         }
 
-        /* ── Sidebar edu cards (compact) ── */
+        /* ── Sidebar edu cards ── */
         .edu-card {
             padding: 0.85rem 1rem;
-            border-radius: 8px;
-            border: 1px solid var(--border);
-            background: var(--surface);
-            margin-bottom: 0.75rem;
-            transition: border-color 0.2s ease, background 0.35s ease;
+            border-radius: 10px;
+            border: 1px solid var(--edge);
+            background: var(--bg);
+            margin-bottom: 0.6rem;
+            transition: border-color 0.18s ease;
         }
 
-        .edu-card:hover { border-color: var(--muted); }
+        .edu-card:hover { border-color: var(--primary); }
 
         .edu-school {
+            font-family: 'Fraunces', Georgia, serif;
             font-weight: 600;
             font-size: 0.95rem;
-            color: var(--text);
+            color: var(--ink);
+            letter-spacing: -0.005em;
         }
 
         .edu-degree {
-            font-size: 0.85rem;
-            color: var(--muted);
+            font-size: 0.8rem;
+            color: var(--ink-mute);
             margin: 0.15rem 0 0.35rem;
+            font-family: 'JetBrains Mono', monospace;
         }
 
         .edu-note {
-            font-size: 0.88rem;
-            color: var(--text);
+            font-size: 0.85rem;
+            color: var(--ink);
             margin: 0;
+            line-height: 1.55;
         }
 
-        .edu-note a { color: var(--link); text-decoration: underline; text-underline-offset: 3px; }
-        .edu-note a:hover { color: var(--accent); }
-
         /* ── Connect ── */
-        .connect { margin-top: 1.5rem; }
+        .connect-blurb {
+            font-size: 0.85rem;
+            color: var(--ink-soft);
+            margin: 0 0 0.6rem;
+        }
 
         .btn-row {
             display: flex;
             flex-wrap: wrap;
-            gap: 0.5rem;
-            margin-top: 0.6rem;
+            gap: 0.45rem;
         }
 
         .btn {
             display: inline-block;
-            font-size: 0.88rem;
+            font-size: 0.85rem;
             font-weight: 500;
-            color: var(--text);
-            background: var(--surface);
-            border: 1px solid var(--border);
+            color: var(--ink);
+            background: var(--bg);
+            border: 1px solid var(--edge);
             text-decoration: none;
-            padding: 0.4rem 0.9rem;
-            border-radius: 6px;
-            transition: border-color 0.2s, background 0.2s;
+            padding: 0.4rem 0.85rem;
+            border-radius: 7px;
+            transition: border-color 0.18s, background 0.18s, color 0.18s;
         }
 
         .btn:hover {
-            border-color: var(--accent);
-            background: var(--accent-soft);
+            border-color: var(--primary);
+            background: var(--primary-soft);
+            color: var(--primary-hover);
+            text-decoration: none;
         }
 
         /* ── Skills ── */
         .skills {
             display: flex;
             flex-wrap: wrap;
-            gap: 0.5rem;
+            gap: 0.45rem;
         }
 
         .skill-pill {
-            font-size: 0.88rem;
-            padding: 0.35rem 0.75rem;
-            border-radius: 6px;
-            border: 1px solid var(--border);
-            background: var(--surface);
-            color: var(--text);
+            font-size: 0.82rem;
+            padding: 0.3rem 0.75rem;
+            border-radius: 999px;
+            border: 1px solid var(--edge);
+            background: var(--bg);
+            color: var(--ink);
+        }
+
+        /* ── Featured card ── */
+        .card.featured {
+            border-color: var(--primary);
+            background: linear-gradient(180deg, var(--primary-soft), var(--panel));
+        }
+
+        .card.featured .card-title::after {
+            content: "new";
+            display: inline-block;
+            font-family: 'Inter', sans-serif;
+            font-size: 0.62rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+            color: var(--primary);
+            background: var(--primary-soft);
+            border: 1px solid var(--primary);
+            padding: 0.12rem 0.45rem;
+            border-radius: 999px;
+            margin-left: 0.55rem;
+            vertical-align: middle;
+        }
+
+        /* ── Pubs list ── */
+        .pubs { list-style: none; padding: 0; margin: 0; }
+        .pubs li {
+            padding: 0.7rem 0;
+            border-bottom: 1px solid var(--edge);
+            font-size: 0.92rem;
+        }
+        .pubs li:last-child { border-bottom: none; }
+        .pub-title {
+            font-family: 'Fraunces', Georgia, serif;
+            font-weight: 600;
+            color: var(--ink);
+            letter-spacing: -0.005em;
+        }
+        .pub-meta {
+            display: block;
+            font-size: 0.82rem;
+            color: var(--ink-soft);
+            margin-top: 0.15rem;
+        }
+        .pub-meta a { font-family: 'JetBrains Mono', monospace; font-size: 0.78rem; }
+
+        /* ── Awards ── */
+        .awards { list-style: none; padding: 0; margin: 0; }
+        .awards li {
+            font-size: 0.9rem;
+            padding: 0.45rem 0;
+            border-bottom: 1px dashed var(--edge);
+            display: flex;
+            justify-content: space-between;
+            gap: 1rem;
+        }
+        .awards li:last-child { border-bottom: none; }
+        .awards .yr {
+            color: var(--ink-mute);
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 0.82rem;
+            white-space: nowrap;
         }
 
         /* ── Theme toggle ── */
@@ -283,41 +384,37 @@
             position: fixed;
             bottom: 1.5rem;
             right: 1.5rem;
-            font-family: 'Source Sans 3', sans-serif;
-            font-size: 1rem;
-            font-weight: 600;
-            color: var(--muted);
-            background: var(--surface);
-            border: 1.5px solid var(--border);
-            padding: 0.65rem 1.35rem;
-            border-radius: 8px;
+            font-family: 'Inter', sans-serif;
+            font-size: 0.85rem;
+            font-weight: 500;
+            color: var(--ink-soft);
+            background: var(--panel);
+            border: 1px solid var(--edge);
+            padding: 0.5rem 1.05rem;
+            border-radius: 999px;
             cursor: pointer;
             z-index: 100;
-            transition: border-color 0.2s, color 0.2s, background 0.35s;
-            box-shadow: 0 2px 8px rgba(0,0,0,0.07);
+            transition: border-color 0.18s, color 0.18s, background 0.25s;
+            box-shadow: var(--shadow);
         }
 
         .theme-toggle:hover {
-            border-color: var(--accent);
-            color: var(--accent);
+            border-color: var(--primary);
+            color: var(--primary);
+            background: var(--card-hover);
         }
 
         /* ── Responsive ── */
-        @media (max-width: 800px) {
+        @media (max-width: 960px) {
             .layout {
                 grid-template-columns: 1fr;
+                gap: 1.5rem;
+                padding: 2rem 1.5rem 4rem;
             }
 
             .sidebar {
                 position: static;
-                height: auto;
-                border-right: none;
-                border-bottom: 1px solid var(--border);
-                padding: 2.5rem 1.5rem 2rem;
-            }
-
-            .main {
-                padding: 2rem 1.5rem 5rem;
+                padding: 1.75rem 1.5rem 2rem;
             }
         }
     </style>
@@ -328,28 +425,26 @@
 
     <!-- ── LEFT: Personal info + Education ── -->
     <aside class="sidebar">
-        <h1>Junqi <span class="nickname">(Kuma)</span> Liu</h1>
-        <p class="tagline">Agentic medical AI · Generative medical AI</p>
-        <p class="meta">Santa Cruz, CA · jliu452@uw.edu</p>
+        <h1>Kuma <span class="nickname">(Junqi Liu)</span></h1>
+        <p class="tagline">Towards automatic research AI.</p>
+        <p class="meta">Seattle, WA · jliu718@ucsc.edu</p>
 
         <p class="intro">
-            Under supervision of <a href="https://yuyinzhou.github.io/">Prof. Yuyin Zhou</a> and
-            <a href="https://cihangxie.github.io/">Prof. Cihang Xie</a> at <strong>UC Santa Cruz</strong>.
-            Research intern at <strong>Johns Hopkins University</strong> (CCVL), advised by
-            <a href="https://www.zongweiz.com/">Prof. Zongwei Zhou</a> and
-            <a href="https://www.cs.jhu.edu/~ayuille/">Prof. Alan Yuille</a>.
-            I work on <strong>agentic medical AI</strong> and <strong>generative medical AI</strong>
-            (vision-language models, diffusion, and clinical imaging).
+            I work on <strong>agentic AI for medical research</strong> — building LLM-driven agents that plan,
+            execute, and reason across real clinical-imaging research pipelines, along with the benchmarks
+            needed to evaluate them honestly. Currently a research scholar at <strong>Johns Hopkins (CCVL)</strong>,
+            advised by <a href="https://www.cs.jhu.edu/~ayuille/">Prof. Alan Yuille</a> and
+            <a href="https://www.zongweiz.com/">Prof. Zongwei Zhou</a>. Incoming PhD at <strong>UC Santa Cruz</strong>
+            this fall, advised by <a href="https://yuyinzhou.github.io/">Prof. Yuyin Zhou</a> and
+            <a href="https://cihangxie.github.io/">Prof. Cihang Xie</a>.
         </p>
 
-        <div class="connect">
-            <h2>Connect</h2>
-            <p style="font-size: 0.9rem; color: var(--muted); margin: 0 0 0.5rem;">Open to research conversations and collaboration.</p>
-            <div class="btn-row">
-                <a href="mailto:jliu452@uw.edu" class="btn">Email</a>
-                <a href="https://linkedin.com/in/junqi-liu-453aa0295" class="btn">LinkedIn</a>
-                <a href="https://github.com/KumaKuma2002" class="btn">GitHub</a>
-            </div>
+        <h2>Connect</h2>
+        <p class="connect-blurb">Open to research conversations and collaboration.</p>
+        <div class="btn-row">
+            <a href="mailto:jliu718@ucsc.edu" class="btn">Email</a>
+            <a href="https://linkedin.com/in/junqi-liu-453aa0295" class="btn">LinkedIn</a>
+            <a href="https://github.com/KumaKuma2002" class="btn">GitHub</a>
         </div>
 
         <h2>Education</h2>
@@ -362,7 +457,7 @@
 
         <div class="edu-card">
             <div class="edu-school">University of Copenhagen</div>
-            <div class="edu-degree">MSc, IT & Cognition</div>
+            <div class="edu-degree">MSc, IT & Cognition · 2024–2026</div>
             <p class="edu-note">NLP and computational cognitive science.</p>
             <span class="tag">NLP</span>
             <span class="tag">Cognitive science</span>
@@ -370,92 +465,124 @@
 
         <div class="edu-card">
             <div class="edu-school">Shanghai Jiao Tong University</div>
-            <div class="edu-degree">BEng, Artificial Intelligence</div>
+            <div class="edu-degree">BEng, Artificial Intelligence · 2020–2024</div>
             <p class="edu-note">ML, computer vision, RL. Advised by <a href="https://jhc.sjtu.edu.cn/people/members/faculty/nanyang-ye.html">Prof. Nanyang Ye</a>.</p>
             <span class="tag">Machine learning</span>
             <span class="tag">Computer vision</span>
-            <span class="tag">NLP</span>
         </div>
+
+        <h2>Skills</h2>
+        <div class="skills">
+            <span class="skill-pill">Agentic AI</span>
+            <span class="skill-pill">LLM agents</span>
+            <span class="skill-pill">Medical imaging</span>
+            <span class="skill-pill">Diffusion</span>
+            <span class="skill-pill">Vision-language</span>
+            <span class="skill-pill">Generative models</span>
+        </div>
+
+        <h2>Awards</h2>
+        <ul class="awards">
+            <li><span>Meritorious Winner, COMAP MCM (top 10%)</span><span class="yr">2023</span></li>
+            <li><span>SJTU Overseas In-depth Study Scholarship</span><span class="yr">2024</span></li>
+            <li><span>SJTU Academic Progress Scholarship</span><span class="yr">2023</span></li>
+        </ul>
     </aside>
 
-    <!-- ── RIGHT: Research + Skills ── -->
+    <!-- ── RIGHT: Research + Pubs + Experience ── -->
     <main class="main">
 
         <section>
-            <h2>Research</h2>
+            <h2>Active projects</h2>
+
+            <div class="card featured">
+                <div class="card-header">
+                    <span class="card-title">AutoMedBench</span>
+                    <span class="card-role">UC Santa Cruz × NVIDIA · 2026–present</span>
+                </div>
+                <div class="card-location">Towards medical AutoResearch</div>
+                <ul>
+                    <li>A benchmark that puts a base LLM in the driver's seat across the full automated research pipeline: planning, setup, validation, inference, submission.</li>
+                    <li>Five research categories — segmentation, LDCT denoising, MRI super-resolution, medical VQA, report generation, lesion detection. 7 models; 2,000+ runs; two-container isolation.</li>
+                </ul>
+                <div class="links">
+                    <a href="https://automedbench.github.io/" target="_blank" rel="noopener" class="card-btn">Website</a>
+                    <a href="https://github.com/KumaKuma2002/AutoMedBench" target="_blank" rel="noopener" class="card-btn">GitHub</a>
+                </div>
+            </div>
 
             <div class="card">
                 <div class="card-header">
                     <span class="card-title">OpenVAE</span>
-                    <span class="card-role">Open source · ongoing</span>
+                    <span class="card-role">UCSC × UCSF × Johns Hopkins × NVIDIA · 2025–present</span>
                 </div>
-                <div class="card-location">Medical imaging</div>
+                <div class="card-location">Scaling latent backbones with worldwide data</div>
                 <ul>
-                    <li>Open-source VAE family for CT/MRI: pretrained latent backbones for medical diffusion (2D/3D KL-VAE and VQ-VAE), trained with perceptual, adversarial, and segmentation-guided objectives at scale.</li>
-                    <li>Weights and model card on Hugging Face; training and benchmark code on GitHub.</li>
+                    <li>Pretrained 2D and 3D KL-VAE / VQ-VAE backbones for CT and MRI volumes.</li>
+                    <li>Trained on 400,000+ CTs collected from 145 hospitals worldwide; used as drop-in priors for downstream medical generative work.</li>
                 </ul>
                 <div class="links">
                     <a href="https://github.com/KumaKuma2002/OpenVAE" target="_blank" rel="noopener" class="card-btn">GitHub</a>
                     <a href="https://huggingface.co/SMILE-project/OpenVAE" target="_blank" rel="noopener" class="card-btn">Hugging Face</a>
-                    <a href="https://arxiv.org/abs/2604.07329" target="_blank" rel="noopener" class="card-btn">Paper</a>
                 </div>
             </div>
+        </section>
+
+        <section>
+            <h2>Publications</h2>
+            <ul class="pubs">
+                <li>
+                    <span class="pub-title">Distilling Photon-Counting CT into Routine Chest CT through Clinically Validated Degradation Modeling.</span>
+                    <span class="pub-meta">Junqi Liu, Xinze Zhou, Wenxuan Li, et al. · arXiv preprint, 2026 · <a href="https://arxiv.org/abs/2604.07329" target="_blank" rel="noopener">arxiv.org/abs/2604.07329</a></span>
+                </li>
+                <li>
+                    <span class="pub-title">See More, Change Less: Anatomy-Aware Diffusion for Contrast Enhancement.</span>
+                    <span class="pub-meta">Junqi Liu et al. · arXiv preprint, 2026 · <a href="https://arxiv.org/abs/2512.07251" target="_blank" rel="noopener">arxiv.org/abs/2512.07251</a></span>
+                </li>
+                <li>
+                    <span class="pub-title">ShapeKit: Shape-Aware Postprocessing for Organ Segmentation.</span>
+                    <span class="pub-meta">Junqi Liu et al. · MICCAI 2025 · <a href="https://arxiv.org/pdf/2506.24003" target="_blank" rel="noopener">arxiv.org/abs/2506.24003</a></span>
+                </li>
+                <li>
+                    <span class="pub-title">AI-Powered Translation Tool to Enable Contrast-Aware CT Synthesis.</span>
+                    <span class="pub-meta">Junqi Liu et al. · RSNA 2025 · <a href="https://github.com/MrGiovanni/SMILE" target="_blank" rel="noopener">github.com/MrGiovanni/SMILE</a></span>
+                </li>
+                <li>
+                    <span class="pub-title">Towards Robust Out-of-Distribution Generalization via Bayesian Optimization.</span>
+                    <span class="pub-meta">Junqi Liu et al. (first author) · <a href="https://tempmpm.readthedocs.io/en/latest/mpm.html" target="_blank" rel="noopener">tempmpm.readthedocs.io</a></span>
+                </li>
+            </ul>
+        </section>
+
+        <section>
+            <h2>Experience</h2>
 
             <div class="card">
                 <div class="card-header">
-                    <span class="card-title">Autonomous Medical Research</span>
-                    <span class="card-role">Agentic medical AI · ongoing</span>
+                    <span class="card-title">Research Scholar — Johns Hopkins, CCVL</span>
+                    <span class="card-role">2025–present</span>
                 </div>
-                <div class="card-location">Agentic medical AI</div>
+                <div class="card-location">Advised by Prof. Alan Yuille (Bloomberg Distinguished Professor)</div>
                 <ul>
-                    <li>Ongoing work on a medical multi-task agent: coordinating diverse clinical imaging and reasoning tasks under one agentic framework.</li>
-                </ul>
-            </div>
-
-            <div class="card">
-                <div class="card-header">
-                    <span class="card-title">Diffusion for CT image enhancement (SMILE)</span>
-                    <span class="card-role">Johns Hopkins · CCVL</span>
-                </div>
-                <div class="card-location">May 2025 – present</div>
-                <ul>
-                    <li>Anatomically aware enhancement for medical imaging (SMILE).</li>
-                    <li>~50% better FID; ~10% F1 lift on early tumor detection.</li>
+                    <li><strong>SMILE</strong> — anatomy-aware diffusion for CT contrast enhancement. ~50% FID gain, ~10% F1 lift on early tumor detection. CVPR 2026 (under review).</li>
+                    <li><strong>ShapeKit</strong> — shape-aware postprocessing for organ segmentation. &gt;10% average DSC improvement. MICCAI 2025.</li>
                 </ul>
                 <div class="links">
-                    <a href="https://github.com/MrGiovanni/SMILE" target="_blank" rel="noopener" class="card-btn">Code</a>
-                    <a href="https://www.cs.jhu.edu/~zongwei/preprint/liu2025see.pdf" target="_blank" rel="noopener" class="card-btn">Paper</a>
-                    <a href="https://www.zongweiz.com/dataset" target="_blank" rel="noopener" class="card-btn">Dataset</a>
+                    <a href="https://github.com/MrGiovanni/SMILE" target="_blank" rel="noopener" class="card-btn">SMILE</a>
+                    <a href="https://github.com/BodyMaps/ShapeKit/tree/main" target="_blank" rel="noopener" class="card-btn">ShapeKit</a>
                     <a href="https://huggingface.co/MitakaKuma/SMILE" target="_blank" rel="noopener" class="card-btn">Model</a>
+                    <a href="https://www.zongweiz.com/dataset" target="_blank" rel="noopener" class="card-btn">Dataset</a>
                 </div>
             </div>
 
             <div class="card">
                 <div class="card-header">
-                    <span class="card-title">Medical imaging — ShapeKit</span>
-                    <span class="card-role">Johns Hopkins · CCVL</span>
+                    <span class="card-title">Research Intern — Kermen Lab, UCPH</span>
+                    <span class="card-role">Oct 2024 – May 2025</span>
                 </div>
-                <div class="card-location">May 2025 – present</div>
+                <div class="card-location">Neuroscience Department · advised by Prof. Florence Kermen</div>
                 <ul>
-                    <li>Efficient CT postprocessing pipeline for organ segmentation.</li>
-                    <li>Average DSC improvement over 10% on organ tasks.</li>
-                    <li>MICCAI 2025 poster.</li>
-                </ul>
-                <div class="links">
-                    <a href="https://github.com/BodyMaps/ShapeKit/tree/main" target="_blank" rel="noopener" class="card-btn">Code</a>
-                    <a href="https://arxiv.org/abs/2506.24003" target="_blank" rel="noopener" class="card-btn">Paper</a>
-                </div>
-            </div>
-
-            <div class="card">
-                <div class="card-header">
-                    <span class="card-title">Zebrafish tracking</span>
-                    <span class="card-role">University of Copenhagen · Kermen Lab</span>
-                </div>
-                <div class="card-location">Oct 2024 – May 2025</div>
-                <ul>
-                    <li>Multi-attention model for zebrafish movement detection.</li>
-                    <li>~80% sensitivity, ~90% specificity.</li>
+                    <li>Designed <strong>ZATA-1.5B</strong>, a multi-attention zebrafish tracking model with transformer backbones for fine-grained behavior — ~80% sensitivity, ~90% specificity.</li>
                     <li>Manuscript in preparation (PNAS).</li>
                 </ul>
                 <div class="links">
@@ -465,13 +592,23 @@
 
             <div class="card">
                 <div class="card-header">
-                    <span class="card-title">Explainable AI for optimization</span>
-                    <span class="card-role">Shanghai AI Lab & SJTU · Yes Lab</span>
+                    <span class="card-title">Quantitative Research Intern — Shanghai Quantinv</span>
+                    <span class="card-role">Mar – Aug 2024</span>
                 </div>
-                <div class="card-location">Oct 2022 – Oct 2023</div>
+                <div class="card-location">Investment & Decision Team · return offer</div>
                 <ul>
-                    <li>Bayesian optimization for multi-site geological modeling.</li>
-                    <li>~50% accuracy gain with large reduction in compute time.</li>
+                    <li>Designed <strong>QuantNet-6B</strong>, an attention-based factor model with transformer backbones — 180% excess return at 20% maximum drawdown.</li>
+                </ul>
+            </div>
+
+            <div class="card">
+                <div class="card-header">
+                    <span class="card-title">Algorithm Research Intern — Shanghai AI Lab</span>
+                    <span class="card-role">Oct 2022 – Oct 2023</span>
+                </div>
+                <div class="card-location">Advised by Prof. Nanyang Ye, SJTU</div>
+                <ul>
+                    <li>Parallelized Bayesian optimization for interpretable deep models — +50% accuracy at −90% runtime. First-author publication.</li>
                 </ul>
                 <div class="links">
                     <a href="https://tempmpm.readthedocs.io/en/latest/mpm.html" target="_blank" rel="noopener" class="card-btn">Docs</a>
@@ -479,27 +616,24 @@
             </div>
         </section>
 
-        <section>
-            <h2>Skills</h2>
-            <div class="skills">
-                <span class="skill-pill">Medical AI</span>
-                <span class="skill-pill">Generative models</span>
-                <span class="skill-pill">AI agents</span>
-            </div>
-        </section>
-
     </main>
 </div>
 
-<button type="button" class="theme-toggle" onclick="toggleTheme()" aria-label="Toggle color theme">Dark mode</button>
+<button type="button" class="theme-toggle" onclick="toggleTheme()" aria-label="Toggle color theme">Light mode</button>
 
 <script>
-    function toggleTheme() {
-        const body = document.body;
-        const btn = document.querySelector('.theme-toggle');
-        body.classList.toggle('night-mode');
-        btn.textContent = body.classList.contains('night-mode') ? 'Light mode' : 'Dark mode';
+    function setLabel() {
+        var isDark = document.documentElement.dataset.theme === 'dark';
+        document.querySelector('.theme-toggle').textContent = isDark ? 'Light mode' : 'Dark mode';
     }
+    function toggleTheme() {
+        var current = document.documentElement.dataset.theme;
+        var next = current === 'dark' ? 'light' : 'dark';
+        document.documentElement.dataset.theme = next;
+        try { localStorage.setItem('kuma.theme', next); } catch (e) {}
+        setLabel();
+    }
+    setLabel();
 </script>
 
 </body>
