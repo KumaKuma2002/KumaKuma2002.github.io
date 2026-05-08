@@ -361,6 +361,42 @@
         }
         .pub-meta a { font-family: 'JetBrains Mono', monospace; font-size: 0.78rem; }
 
+        /* ── News ── */
+        .news { list-style: none; padding: 0; margin: 0; }
+        .news li {
+            display: flex;
+            gap: 0.95rem;
+            padding: 0.7rem 0;
+            border-bottom: 1px solid var(--edge);
+            font-size: 0.92rem;
+            line-height: 1.55;
+        }
+        .news li:last-child { border-bottom: none; }
+        .news .news-date {
+            flex: 0 0 5.5rem;
+            color: var(--ink-mute);
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 0.78rem;
+            padding-top: 0.1rem;
+            white-space: nowrap;
+        }
+        .news .news-body { color: var(--ink); }
+        .news .news-tag {
+            display: inline-block;
+            font-family: 'Inter', sans-serif;
+            font-size: 0.62rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+            color: var(--primary);
+            background: var(--primary-soft);
+            border: 1px solid var(--primary);
+            padding: 0.12rem 0.45rem;
+            border-radius: 999px;
+            margin-right: 0.5rem;
+            vertical-align: middle;
+        }
+
         /* ── Awards ── */
         .awards { list-style: none; padding: 0; margin: 0; }
         .awards li {
@@ -478,7 +514,6 @@
             <span class="skill-pill">Medical imaging</span>
             <span class="skill-pill">Diffusion</span>
             <span class="skill-pill">Vision-language</span>
-            <span class="skill-pill">Generative models</span>
         </div>
 
         <h2>Awards</h2>
@@ -493,6 +528,16 @@
     <main class="main">
 
         <section>
+            <h2>News</h2>
+            <ul class="news">
+                <li>
+                    <span class="news-date">May 2026</span>
+                    <span class="news-body"><span class="news-tag">New</span>Our paper <em>Distilling Photon-Counting CT into Routine Chest CT through Clinically Validated Degradation Modeling</em> received an <strong>early accept at MICCAI 2026</strong>.</span>
+                </li>
+            </ul>
+        </section>
+
+        <section>
             <h2>Active projects</h2>
 
             <div class="card featured">
@@ -503,7 +548,7 @@
                 <div class="card-location">Towards medical AutoResearch</div>
                 <ul>
                     <li>A benchmark that puts a base LLM in the driver's seat across the full automated research pipeline: planning, setup, validation, inference, submission.</li>
-                    <li>Five research categories — segmentation, LDCT denoising, MRI super-resolution, medical VQA, report generation, lesion detection. 7 models; 2,000+ runs; two-container isolation.</li>
+                    <li>Five research categories — segmentation, enhancement, VQA, report, detection. 7 models; 2,000+ runs; two-container isolation.</li>
                 </ul>
                 <div class="links">
                     <a href="https://automedbench.github.io/" target="_blank" rel="noopener" class="card-btn">Website</a>
@@ -533,7 +578,7 @@
             <ul class="pubs">
                 <li>
                     <span class="pub-title">Distilling Photon-Counting CT into Routine Chest CT through Clinically Validated Degradation Modeling.</span>
-                    <span class="pub-meta">Junqi Liu, Xinze Zhou, Wenxuan Li, et al. · arXiv preprint, 2026 · <a href="https://arxiv.org/abs/2604.07329" target="_blank" rel="noopener">arxiv.org/abs/2604.07329</a></span>
+                    <span class="pub-meta">Junqi Liu, Xinze Zhou, Wenxuan Li, et al. · MICCAI 2026 (early accept) · <a href="https://arxiv.org/abs/2604.07329" target="_blank" rel="noopener">arxiv.org/abs/2604.07329</a></span>
                 </li>
                 <li>
                     <span class="pub-title">See More, Change Less: Anatomy-Aware Diffusion for Contrast Enhancement.</span>
