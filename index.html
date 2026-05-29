@@ -16,43 +16,43 @@
         })();
     </script>
     <style>
-        /* ── AutoMedBench / Oregon Forest palette ── */
+        /* ── OpenResearch palette ── */
         :root {
-            --bg: #F6F1E6;
-            --panel: #FAF6EE;
-            --ink: #3B4538;
-            --ink-soft: #737A6D;
-            --ink-mute: #A1A79A;
-            --edge: #ECE4D2;
-            --grid: #F0EADA;
-            --primary: #4A7355;
-            --primary-hover: #3E6248;
-            --primary-soft: #E6EDE5;
-            --moss: #83996E;
-            --walnut: #A08666;
-            --amber-bark: #D2B684;
-            --amber-soft: #F6EDDB;
-            --card-hover: #F1ECDE;
-            --shadow: 0 1px 1px rgba(60,70,58,0.018), 0 2px 4px rgba(60,70,58,0.025);
+            --bg: #FFFFFF;
+            --panel: #FAFAFA;
+            --ink: #1D1B1A;
+            --ink-soft: #737373;
+            --ink-mute: #A1A1A1;
+            --edge: #E5E5E5;
+            --grid: #F5F5F5;
+            --primary: #9A2036;
+            --primary-hover: #7D1A2C;
+            --primary-soft: #FBE3E5;
+            --moss: #209A84;
+            --walnut: #986801;
+            --amber-bark: #DA9100;
+            --amber-soft: #FFF3E1;
+            --card-hover: #F5F5F5;
+            --shadow: 0 1px 1px rgba(29,27,26,0.02), 0 2px 4px rgba(29,27,26,0.03);
         }
 
         :root[data-theme="dark"] {
-            --bg: #141812;
-            --panel: #1C201B;
-            --ink: #E4E6DC;
-            --ink-soft: #A0A69A;
-            --ink-mute: #6E746A;
-            --edge: #2A2E28;
-            --grid: #23271F;
-            --primary: #84B38D;
-            --primary-hover: #9CC7A4;
-            --primary-soft: #1E2B21;
-            --moss: #7E9770;
-            --walnut: #C6A98A;
-            --amber-bark: #D4B886;
-            --amber-soft: #2A241B;
-            --card-hover: #202520;
-            --shadow: 0 1px 2px rgba(0,0,0,0.40), 0 4px 10px rgba(0,0,0,0.28);
+            --bg: #0E0C0C;
+            --panel: #1D1B1A;
+            --ink: #E6E1E0;
+            --ink-soft: #A1A1A1;
+            --ink-mute: #737373;
+            --edge: #404040;
+            --grid: #1D1B1A;
+            --primary: #FFB3AD;
+            --primary-hover: #FFCED7;
+            --primary-soft: #2C1A1C;
+            --moss: #5EB64C;
+            --walnut: #E5C07B;
+            --amber-bark: #DA9100;
+            --amber-soft: #2A2419;
+            --card-hover: #23211F;
+            --shadow: 0 1px 2px rgba(0,0,0,0.45), 0 4px 10px rgba(0,0,0,0.32);
         }
 
         * { box-sizing: border-box; }
@@ -216,21 +216,30 @@
         }
 
         .card-btn {
-            font-size: 0.83rem;
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 0.78rem;
             font-weight: 500;
-            color: var(--primary);
+            color: var(--ink);
+            background: var(--panel);
             text-decoration: none;
-            padding: 0.22rem 0.55rem;
-            border: 1px solid var(--edge);
-            border-radius: 6px;
-            transition: color 0.15s, border-color 0.15s, background 0.15s;
+            padding: 0.26rem 0.6rem;
+            border: 1.5px solid var(--ink);
+            border-radius: 0;
+            box-shadow: 2px 2px 0 var(--ink);
+            transition: transform 0.1s ease, box-shadow 0.1s ease, background 0.15s, color 0.15s;
         }
 
         .card-btn:hover {
-            border-color: var(--primary);
-            background: var(--primary-soft);
-            color: var(--primary-hover);
+            background: var(--primary);
+            color: var(--bg);
+            transform: translate(1px, 1px);
+            box-shadow: 1px 1px 0 var(--ink);
             text-decoration: none;
+        }
+
+        .card-btn:active {
+            transform: translate(2px, 2px);
+            box-shadow: 0 0 0 var(--ink);
         }
 
         /* ── Sidebar edu cards ── */
@@ -282,38 +291,30 @@
 
         .btn {
             display: inline-block;
-            font-size: 0.85rem;
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 0.8rem;
             font-weight: 500;
             color: var(--ink);
-            background: var(--bg);
-            border: 1px solid var(--edge);
+            background: var(--panel);
+            border: 1.5px solid var(--ink);
             text-decoration: none;
             padding: 0.4rem 0.85rem;
-            border-radius: 7px;
-            transition: border-color 0.18s, background 0.18s, color 0.18s;
+            border-radius: 0;
+            box-shadow: 3px 3px 0 var(--ink);
+            transition: transform 0.1s ease, box-shadow 0.1s ease, background 0.15s, color 0.15s;
         }
 
         .btn:hover {
-            border-color: var(--primary);
-            background: var(--primary-soft);
-            color: var(--primary-hover);
+            background: var(--primary);
+            color: var(--bg);
+            transform: translate(2px, 2px);
+            box-shadow: 1px 1px 0 var(--ink);
             text-decoration: none;
         }
 
-        /* ── Skills ── */
-        .skills {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 0.45rem;
-        }
-
-        .skill-pill {
-            font-size: 0.82rem;
-            padding: 0.3rem 0.75rem;
-            border-radius: 999px;
-            border: 1px solid var(--edge);
-            background: var(--bg);
-            color: var(--ink);
+        .btn:active {
+            transform: translate(3px, 3px);
+            box-shadow: 0 0 0 var(--ink);
         }
 
         /* ── Featured card ── */
@@ -353,6 +354,8 @@
             color: var(--ink);
             letter-spacing: -0.005em;
         }
+        a.pub-title { transition: color 0.15s; }
+        a.pub-title:hover { color: var(--primary); text-decoration: underline; text-underline-offset: 3px; }
         .pub-meta {
             display: block;
             font-size: 0.82rem;
@@ -420,24 +423,30 @@
             position: fixed;
             bottom: 1.5rem;
             right: 1.5rem;
-            font-family: 'Inter', sans-serif;
-            font-size: 0.85rem;
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 0.8rem;
             font-weight: 500;
-            color: var(--ink-soft);
+            color: var(--ink);
             background: var(--panel);
-            border: 1px solid var(--edge);
+            border: 1.5px solid var(--ink);
             padding: 0.5rem 1.05rem;
-            border-radius: 999px;
+            border-radius: 0;
             cursor: pointer;
             z-index: 100;
-            transition: border-color 0.18s, color 0.18s, background 0.25s;
-            box-shadow: var(--shadow);
+            box-shadow: 3px 3px 0 var(--ink);
+            transition: transform 0.1s ease, box-shadow 0.1s ease, background 0.15s, color 0.15s;
         }
 
         .theme-toggle:hover {
-            border-color: var(--primary);
-            color: var(--primary);
-            background: var(--card-hover);
+            background: var(--primary);
+            color: var(--bg);
+            transform: translate(2px, 2px);
+            box-shadow: 1px 1px 0 var(--ink);
+        }
+
+        .theme-toggle:active {
+            transform: translate(3px, 3px);
+            box-shadow: 0 0 0 var(--ink);
         }
 
         /* ── Responsive ── */
@@ -463,17 +472,16 @@
     <aside class="sidebar">
         <h1>Kuma <span class="nickname">(Junqi Liu)</span></h1>
         <p class="tagline">Towards automatic research AI.</p>
-        <p class="meta">Seattle, WA · jliu718@ucsc.edu</p>
+        <p class="meta">Bay Area, CA · jliu718@ucsc.edu</p>
 
         <p class="intro">
-            I build <strong>agentic AI and generative AI</strong> for medical research, from LLM agents for
-            clinical-imaging workflows to diffusion models for CT enhancement and diagnosis. Previously a
-            research scholar at <strong>Johns Hopkins (CCVL)</strong>, advised by
-            <a href="https://www.cs.jhu.edu/~ayuille/">Prof. Alan Yuille</a> and
-            <a href="https://www.zongweiz.com/">Prof. Zongwei Zhou</a>. Incoming PhD student at
-            <strong>UC Santa Cruz</strong> this fall, advised by
+            I build <strong>agentic AI and generative AI</strong> for medical research — from LLM research
+            agents to diffusion models for CT. Incoming PhD student at <strong>UC Santa Cruz</strong>, advised by
             <a href="https://yuyinzhou.github.io/">Prof. Yuyin Zhou</a> and
-            <a href="https://cihangxie.github.io/">Prof. Cihang Xie</a>.
+            <a href="https://cihangxie.github.io/">Prof. Cihang Xie</a>; previously a research scholar at
+            <strong>Johns Hopkins (CCVL)</strong> with
+            <a href="https://www.cs.jhu.edu/~ayuille/">Prof. Alan Yuille</a> and
+            <a href="https://www.zongweiz.com/">Prof. Zongwei Zhou</a>.
         </p>
 
         <h2>Connect</h2>
@@ -506,16 +514,6 @@
             <p class="edu-note">ML, computer vision, RL. Advised by <a href="https://jhc.sjtu.edu.cn/people/members/faculty/nanyang-ye.html">Prof. Nanyang Ye</a>.</p>
             <span class="tag">Machine learning</span>
             <span class="tag">Computer vision</span>
-        </div>
-
-        <h2>Skills</h2>
-        <div class="skills">
-            <span class="skill-pill">Agentic AI</span>
-            <span class="skill-pill">Generative AI</span>
-            <span class="skill-pill">LLM agents</span>
-            <span class="skill-pill">Medical imaging</span>
-            <span class="skill-pill">Diffusion</span>
-            <span class="skill-pill">Vision-language</span>
         </div>
 
         <h2>Awards</h2>
@@ -579,23 +577,23 @@
             <h2>Publications</h2>
             <ul class="pubs">
                 <li>
-                    <span class="pub-title">Distilling Photon-Counting CT into Routine Chest CT through Clinically Validated Degradation Modeling.</span>
+                    <a href="https://arxiv.org/abs/2604.07329" target="_blank" rel="noopener" class="pub-title">Distilling Photon-Counting CT into Routine Chest CT through Clinically Validated Degradation Modeling.</a>
                     <span class="pub-meta">Junqi Liu, Xinze Zhou, Wenxuan Li, et al. · MICCAI 2026 (early accept) · <a href="https://arxiv.org/abs/2604.07329" target="_blank" rel="noopener">arxiv.org/abs/2604.07329</a></span>
                 </li>
                 <li>
-                    <span class="pub-title">See More, Change Less: Anatomy-Aware Diffusion for Contrast Enhancement.</span>
+                    <a href="https://arxiv.org/abs/2512.07251" target="_blank" rel="noopener" class="pub-title">See More, Change Less: Anatomy-Aware Diffusion for Contrast Enhancement.</a>
                     <span class="pub-meta">Junqi Liu et al. · arXiv preprint, 2026 · <a href="https://arxiv.org/abs/2512.07251" target="_blank" rel="noopener">arxiv.org/abs/2512.07251</a></span>
                 </li>
                 <li>
-                    <span class="pub-title">ShapeKit: Shape-Aware Postprocessing for Organ Segmentation.</span>
+                    <a href="https://arxiv.org/pdf/2506.24003" target="_blank" rel="noopener" class="pub-title">ShapeKit: Shape-Aware Postprocessing for Organ Segmentation.</a>
                     <span class="pub-meta">Junqi Liu et al. · MICCAI 2025 · <a href="https://arxiv.org/pdf/2506.24003" target="_blank" rel="noopener">arxiv.org/abs/2506.24003</a></span>
                 </li>
                 <li>
-                    <span class="pub-title">AI-Powered Translation Tool to Enable Contrast-Aware CT Synthesis.</span>
+                    <a href="https://github.com/MrGiovanni/SMILE" target="_blank" rel="noopener" class="pub-title">AI-Powered Translation Tool to Enable Contrast-Aware CT Synthesis.</a>
                     <span class="pub-meta">Junqi Liu et al. · RSNA 2025 · <a href="https://github.com/MrGiovanni/SMILE" target="_blank" rel="noopener">github.com/MrGiovanni/SMILE</a></span>
                 </li>
                 <li>
-                    <span class="pub-title">Towards Robust Out-of-Distribution Generalization via Bayesian Optimization.</span>
+                    <a href="https://tempmpm.readthedocs.io/en/latest/mpm.html" target="_blank" rel="noopener" class="pub-title">Towards Robust Out-of-Distribution Generalization via Bayesian Optimization.</a>
                     <span class="pub-meta">Junqi Liu et al. (first author) · <a href="https://tempmpm.readthedocs.io/en/latest/mpm.html" target="_blank" rel="noopener">tempmpm.readthedocs.io</a></span>
                 </li>
             </ul>
