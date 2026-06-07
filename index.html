@@ -16,7 +16,7 @@
         })();
     </script>
     <style>
-        /* ── OpenResearch palette ── */
+        /* ── Cozy coral palette ── */
         :root {
             --bg: #FFFFFF;
             --panel: #FAFAFA;
@@ -25,9 +25,9 @@
             --ink-mute: #A1A1A1;
             --edge: #E5E5E5;
             --grid: #F5F5F5;
-            --primary: #9A2036;
-            --primary-hover: #7D1A2C;
-            --primary-soft: #FBE3E5;
+            --primary: #B85A3A;
+            --primary-hover: #963F25;
+            --primary-soft: #FAEAE4;
             --moss: #209A84;
             --walnut: #986801;
             --amber-bark: #DA9100;
@@ -44,9 +44,9 @@
             --ink-mute: #737373;
             --edge: #404040;
             --grid: #1D1B1A;
-            --primary: #FFB3AD;
-            --primary-hover: #FFCED7;
-            --primary-soft: #2C1A1C;
+            --primary: #DA7756;
+            --primary-hover: #F0997A;
+            --primary-soft: #2E1A14;
             --moss: #5EB64C;
             --walnut: #E5C07B;
             --amber-bark: #DA9100;
@@ -547,12 +547,16 @@
                 </div>
                 <div class="card-location">Towards medical AutoResearch</div>
                 <ul>
-                    <li>A benchmark that puts a base LLM in the driver's seat across the full automated research pipeline: planning, setup, validation, inference, submission.</li>
-                    <li>Five research categories — segmentation, enhancement, VQA, report, detection. 7 models; 2,000+ runs; two-container isolation.</li>
+                    <li>A workflow-aware benchmark that puts a base LLM in the driver's seat across the full automated research pipeline: planning, setup, validation, inference, submission.</li>
+                    <li>Five research categories — segmentation, enhancement, VQA, report, detection. 7 models; 5,400+ runs; two-container isolation.</li>
+                    <li>Uses LLM-as-judge scoring and curated skill sets to evaluate agentic ability across two scaffolding tiers — <em>Lite</em> (step-by-step guidance) and <em>Standard</em> (open-ended, minimal hints).</li>
+                    <li><strong>Key finding:</strong> over 99% of error codes triggered are engineering-based; a single error code causes an average 48% score drop.</li>
                 </ul>
                 <div class="links">
                     <a href="https://automedbench.github.io/" target="_blank" rel="noopener" class="card-btn">Website</a>
                     <a href="https://github.com/KumaKuma2002/AutoMedBench" target="_blank" rel="noopener" class="card-btn">GitHub</a>
+                    <a href="https://arxiv.org/abs/2606.01961" target="_blank" rel="noopener" class="card-btn">arXiv</a>
+                    <a href="https://huggingface.co/papers/2606.01961" target="_blank" rel="noopener" class="card-btn">HF Paper</a>
                 </div>
             </div>
 
@@ -576,6 +580,10 @@
         <section>
             <h2>Publications</h2>
             <ul class="pubs">
+                <li>
+                    <a href="https://arxiv.org/abs/2606.01961" target="_blank" rel="noopener" class="pub-title">AutoMedBench: Towards Medical AutoResearch with Agentic AI Models.</a>
+                    <span class="pub-meta">Junqi Liu, Selena Song, Yuhan Wang, et al. · arXiv preprint, 2026 · <a href="https://arxiv.org/abs/2606.01961" target="_blank" rel="noopener">arxiv.org/abs/2606.01961</a></span>
+                </li>
                 <li>
                     <a href="https://arxiv.org/abs/2604.07329" target="_blank" rel="noopener" class="pub-title">Distilling Photon-Counting CT into Routine Chest CT through Clinically Validated Degradation Modeling.</a>
                     <span class="pub-meta">Junqi Liu, Xinze Zhou, Wenxuan Li, et al. · MICCAI 2026 (early accept) · <a href="https://arxiv.org/abs/2604.07329" target="_blank" rel="noopener">arxiv.org/abs/2604.07329</a></span>
