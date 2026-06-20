@@ -4,9 +4,6 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Kuma (Junqi Liu) | AI Researcher</title>
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600;9..144,700&family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
     <script>
         (function () {
             try {
@@ -60,14 +57,14 @@
         html, body {
             margin: 0; padding: 0;
             background: var(--bg); color: var(--ink);
-            font-family: 'Inter', system-ui, -apple-system, sans-serif;
+            font-family: 'SF Mono', 'Menlo', 'Monaco', monospace;
             font-size: 15px; line-height: 1.6;
             -webkit-font-smoothing: antialiased;
             transition: background-color 0.25s ease, color 0.25s ease;
         }
 
         h1, h2, h3 {
-            font-family: 'Fraunces', Georgia, serif;
+            font-family: 'SF Mono', 'Menlo', 'Monaco', monospace;
             font-weight: 600;
             letter-spacing: -0.015em;
             color: var(--ink);
@@ -92,7 +89,7 @@
         .sidebar {
             background: var(--panel);
             border: 1px solid var(--edge);
-            border-radius: 14px;
+            border-radius: 0;
             padding: 2rem 1.75rem 2.25rem;
             position: sticky;
             top: 2rem;
@@ -107,10 +104,18 @@
             line-height: 1.2;
         }
 
+        .avatar {
+            width: 100%;
+            display: block;
+            border-radius: 0;
+            border: 1px solid var(--edge);
+            margin-bottom: 1rem;
+        }
+
         .nickname { color: var(--ink-soft); font-weight: 400; font-style: italic; }
 
         .tagline {
-            font-family: 'Fraunces', Georgia, serif;
+            font-family: 'SF Mono', 'Menlo', 'Monaco', monospace;
             font-size: 0.98rem;
             color: var(--ink-soft);
             margin: 0 0 0.85rem;
@@ -122,15 +127,18 @@
             font-size: 0.82rem;
             color: var(--ink-mute);
             margin: 0 0 1.25rem;
-            font-family: 'JetBrains Mono', monospace;
+            font-family: 'SF Mono', 'Menlo', 'Monaco', monospace;
         }
 
         .intro {
+            font-family: 'Apple Braille', sans-serif;
             font-size: 0.92rem;
             margin: 0 0 1.5rem;
             line-height: 1.65;
             color: var(--ink);
         }
+        .intro a { color: var(--ink); text-decoration: underline; text-underline-offset: 3px; }
+        .intro a:hover { color: var(--primary); }
 
         h2 {
             font-size: 1rem;
@@ -152,7 +160,7 @@
         .card {
             background: var(--panel);
             border: 1px solid var(--edge);
-            border-radius: 12px;
+            border-radius: 0;
             padding: 1.15rem 1.35rem 1.25rem;
             margin-bottom: 0.9rem;
             transition: border-color 0.18s ease, background 0.25s ease;
@@ -173,7 +181,7 @@
         }
 
         .card-title {
-            font-family: 'Fraunces', Georgia, serif;
+            font-family: 'SF Mono', 'Menlo', 'Monaco', monospace;
             font-size: 1.05rem;
             font-weight: 600;
             color: var(--ink);
@@ -186,10 +194,10 @@
         }
 
         .card-location {
+            font-family: 'Apple Braille', sans-serif;
             font-size: 0.82rem;
             color: var(--ink-mute);
             margin-bottom: 0.5rem;
-            font-family: 'JetBrains Mono', monospace;
         }
 
         .tag {
@@ -197,7 +205,7 @@
             font-size: 0.74rem;
             font-weight: 500;
             padding: 0.18rem 0.55rem;
-            border-radius: 999px;
+            border-radius: 0;
             background: var(--amber-soft);
             color: var(--walnut);
             margin: 0.3rem 0.3rem 0 0;
@@ -207,6 +215,7 @@
         ul { margin: 0.4rem 0 0; padding-left: 1.15rem; }
         li { margin-bottom: 0.3rem; font-size: 0.92rem; line-height: 1.6; color: var(--ink); }
         li::marker { color: var(--ink-mute); }
+        .card li { font-family: 'Apple Braille', sans-serif; }
 
         .links {
             margin-top: 0.85rem;
@@ -216,7 +225,7 @@
         }
 
         .card-btn {
-            font-family: 'JetBrains Mono', monospace;
+            font-family: 'SF Mono', 'Menlo', 'Monaco', monospace;
             font-size: 0.78rem;
             font-weight: 500;
             color: var(--ink);
@@ -245,7 +254,7 @@
         /* ── Sidebar edu cards ── */
         .edu-card {
             padding: 0.85rem 1rem;
-            border-radius: 10px;
+            border-radius: 0;
             border: 1px solid var(--edge);
             background: var(--bg);
             margin-bottom: 0.6rem;
@@ -255,7 +264,7 @@
         .edu-card:hover { border-color: var(--primary); }
 
         .edu-school {
-            font-family: 'Fraunces', Georgia, serif;
+            font-family: 'SF Mono', 'Menlo', 'Monaco', monospace;
             font-weight: 600;
             font-size: 0.95rem;
             color: var(--ink);
@@ -266,7 +275,7 @@
             font-size: 0.8rem;
             color: var(--ink-mute);
             margin: 0.15rem 0 0.35rem;
-            font-family: 'JetBrains Mono', monospace;
+            font-family: 'SF Mono', 'Menlo', 'Monaco', monospace;
         }
 
         .edu-note {
@@ -291,7 +300,7 @@
 
         .btn {
             display: inline-block;
-            font-family: 'JetBrains Mono', monospace;
+            font-family: 'SF Mono', 'Menlo', 'Monaco', monospace;
             font-size: 0.8rem;
             font-weight: 500;
             color: var(--ink);
@@ -326,7 +335,7 @@
         .card.featured .card-title::after {
             content: "new";
             display: inline-block;
-            font-family: 'Inter', sans-serif;
+            font-family: 'SF Mono', 'Menlo', 'Monaco', monospace;
             font-size: 0.62rem;
             font-weight: 700;
             text-transform: uppercase;
@@ -335,7 +344,7 @@
             background: var(--primary-soft);
             border: 1px solid var(--primary);
             padding: 0.12rem 0.45rem;
-            border-radius: 999px;
+            border-radius: 0;
             margin-left: 0.55rem;
             vertical-align: middle;
         }
@@ -349,7 +358,7 @@
         }
         .pubs li:last-child { border-bottom: none; }
         .pub-title {
-            font-family: 'Fraunces', Georgia, serif;
+            font-family: 'SF Mono', 'Menlo', 'Monaco', monospace;
             font-weight: 600;
             color: var(--ink);
             letter-spacing: -0.005em;
@@ -362,7 +371,7 @@
             color: var(--ink-soft);
             margin-top: 0.15rem;
         }
-        .pub-meta a { font-family: 'JetBrains Mono', monospace; font-size: 0.78rem; }
+        .pub-meta a { font-family: 'SF Mono', 'Menlo', 'Monaco', monospace; font-size: 0.78rem; }
 
         /* ── News ── */
         .news { list-style: none; padding: 0; margin: 0; }
@@ -378,7 +387,7 @@
         .news .news-date {
             flex: 0 0 5.5rem;
             color: var(--ink-mute);
-            font-family: 'JetBrains Mono', monospace;
+            font-family: 'SF Mono', 'Menlo', 'Monaco', monospace;
             font-size: 0.78rem;
             padding-top: 0.1rem;
             white-space: nowrap;
@@ -386,7 +395,7 @@
         .news .news-body { color: var(--ink); }
         .news .news-tag {
             display: inline-block;
-            font-family: 'Inter', sans-serif;
+            font-family: 'SF Mono', 'Menlo', 'Monaco', monospace;
             font-size: 0.62rem;
             font-weight: 700;
             text-transform: uppercase;
@@ -395,7 +404,7 @@
             background: var(--primary-soft);
             border: 1px solid var(--primary);
             padding: 0.12rem 0.45rem;
-            border-radius: 999px;
+            border-radius: 0;
             margin-right: 0.5rem;
             vertical-align: middle;
         }
@@ -413,7 +422,7 @@
         .awards li:last-child { border-bottom: none; }
         .awards .yr {
             color: var(--ink-mute);
-            font-family: 'JetBrains Mono', monospace;
+            font-family: 'SF Mono', 'Menlo', 'Monaco', monospace;
             font-size: 0.82rem;
             white-space: nowrap;
         }
@@ -423,7 +432,7 @@
             position: fixed;
             bottom: 1.5rem;
             right: 1.5rem;
-            font-family: 'JetBrains Mono', monospace;
+            font-family: 'SF Mono', 'Menlo', 'Monaco', monospace;
             font-size: 0.8rem;
             font-weight: 500;
             color: var(--ink);
@@ -470,18 +479,21 @@
 
     <!-- ── LEFT: Personal info + Education ── -->
     <aside class="sidebar">
+        <img src="profile.jpg" alt="Junqi Liu (Kuma)" class="avatar">
         <h1>Kuma <span class="nickname">(Junqi Liu)</span></h1>
         <p class="tagline">Towards automatic research AI.</p>
         <p class="meta">Bay Area, CA · jliu718@ucsc.edu</p>
 
         <p class="intro">
-            I build <strong>agentic AI and generative AI</strong> for medical research — from LLM research
-            agents to diffusion models for CT. Incoming PhD student at <strong>UC Santa Cruz</strong>, advised by
+            I work on Agentic AutoResearch AI — building LLM research agents that can plan, run, and
+            validate experiments across the full research pipeline. Incoming PhD student at
+            UC Santa Cruz, advised by
             <a href="https://yuyinzhou.github.io/">Prof. Yuyin Zhou</a> and
             <a href="https://cihangxie.github.io/">Prof. Cihang Xie</a>; previously a research scholar at
-            <strong>Johns Hopkins (CCVL)</strong> with
+            Johns Hopkins (CCVL) with
             <a href="https://www.cs.jhu.edu/~ayuille/">Prof. Alan Yuille</a> and
-            <a href="https://www.zongweiz.com/">Prof. Zongwei Zhou</a>.
+            <a href="https://www.zongweiz.com/">Prof. Zongwei Zhou</a>, where I worked on generative AI and
+            vision-language models (VLMs) for medical imaging.
         </p>
 
         <h2>Connect</h2>
@@ -490,6 +502,7 @@
             <a href="mailto:jliu718@ucsc.edu" class="btn">Email</a>
             <a href="https://linkedin.com/in/junqi-liu-453aa0295" class="btn">LinkedIn</a>
             <a href="https://github.com/KumaKuma2002" class="btn">GitHub</a>
+            <a href="https://scholar.google.com/citations?user=4Xpspl0AAAAJ&hl=en" class="btn">Google Scholar</a>
         </div>
 
         <h2>Education</h2>
