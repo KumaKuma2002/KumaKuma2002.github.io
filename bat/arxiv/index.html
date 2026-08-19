@@ -1,0 +1,271 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Benchmark-as-Teacher</title>
+  <style>
+    :root {
+      --nvidia-green: #76B900;
+      --nvidia-dark: #1a1a1a;
+      --nvidia-black: #0d0d0d;
+      --nvidia-gray: #2a2a2a;
+      --nvidia-light: #f0f0f0;
+      --accent-cyan: #00d4aa;
+    }
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    body {
+      background: var(--nvidia-black);
+      color: var(--nvidia-light);
+      font-family: 'SF Mono', 'Fira Code', 'JetBrains Mono', monospace;
+      line-height: 1.7;
+      overflow-x: hidden;
+    }
+    .container { max-width: 1100px; margin: 0 auto; padding: 2rem; }
+
+    /* sticky top bar */
+    .topbar {
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      background: rgba(13, 13, 13, 0.92);
+      backdrop-filter: blur(8px);
+      -webkit-backdrop-filter: blur(8px);
+      border-bottom: 2px solid var(--nvidia-green);
+    }
+    .topbar-inner {
+      max-width: 1100px;
+      margin: 0 auto;
+      padding: 0.6rem 2rem;
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+    }
+    .topbar img.bat { height: 32px; width: auto; }
+    .topbar .name { color: var(--nvidia-green); font-weight: 700; font-size: 1rem; letter-spacing: -0.01em; }
+    .topbar nav { margin-left: auto; display: flex; align-items: center; gap: 1.2rem; }
+    .topbar nav a {
+      color: var(--nvidia-light);
+      text-decoration: none;
+      font-size: 0.8rem;
+      opacity: 0.85;
+    }
+    .topbar nav a:hover { color: var(--nvidia-green); opacity: 1; }
+    .topbar img.nv { height: 16px; width: auto; display: block; }
+
+    header.hero {
+      border-bottom: 3px solid var(--nvidia-green);
+      padding: 3rem 0 2rem 0;
+      margin-bottom: 3rem;
+    }
+    h1 {
+      color: var(--nvidia-green);
+      font-size: 2.6rem;
+      font-weight: 700;
+      letter-spacing: -0.02em;
+      margin-bottom: 0.5rem;
+    }
+    .subtitle { font-size: 1.15rem; opacity: 0.9; max-width: 46rem; }
+    .badge {
+      display: inline-block;
+      background: var(--nvidia-green);
+      color: var(--nvidia-black);
+      padding: 0.2rem 0.6rem;
+      border-radius: 4px;
+      font-size: 0.75rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      margin-right: 0.5rem;
+    }
+    .links { margin-top: 1.5rem; display: flex; gap: 0.8rem; flex-wrap: wrap; }
+    .links a {
+      color: var(--nvidia-black);
+      background: var(--nvidia-green);
+      text-decoration: none;
+      font-size: 0.85rem;
+      font-weight: 700;
+      padding: 0.45rem 1rem;
+      border-radius: 6px;
+    }
+    .links a.ghost {
+      background: none;
+      color: var(--nvidia-light);
+      border: 1px solid var(--nvidia-gray);
+      font-weight: 400;
+    }
+    .links a:hover { filter: brightness(1.15); }
+
+    section {
+      margin-bottom: 3rem;
+      padding: 2rem;
+      background: var(--nvidia-dark);
+      border: 1px solid var(--nvidia-gray);
+      border-radius: 8px;
+      scroll-margin-top: 4.5rem;
+    }
+    h2 {
+      color: var(--nvidia-green);
+      font-size: 1.5rem;
+      margin-bottom: 1rem;
+      border-bottom: 2px solid var(--nvidia-green);
+      padding-bottom: 0.5rem;
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+    h2::before { content: '>'; color: var(--accent-cyan); font-weight: 700; }
+    h3 { color: var(--accent-cyan); font-size: 1.05rem; margin: 1.2rem 0 0.6rem 0; }
+    p { margin-bottom: 1rem; }
+    code {
+      background: var(--nvidia-gray);
+      color: var(--nvidia-green);
+      padding: 0.2rem 0.5rem;
+      border-radius: 4px;
+      font-size: 0.9em;
+    }
+    pre {
+      background: var(--nvidia-gray);
+      border: 1px solid var(--nvidia-green);
+      border-radius: 8px;
+      padding: 1.5rem;
+      overflow-x: auto;
+      margin: 1rem 0;
+      font-size: 0.82rem;
+    }
+    pre code { background: none; padding: 0; color: var(--nvidia-light); }
+    .figure-container {
+      background: white;
+      border-radius: 8px;
+      padding: 1rem;
+      margin: 1.5rem 0;
+      text-align: center;
+    }
+    .figure-container img { max-width: 100%; height: auto; border-radius: 4px; }
+    .grid-2 { display: grid; grid-template-columns: 1fr 1fr; gap: 2rem; }
+    @media (max-width: 768px) {
+      .grid-2 { grid-template-columns: 1fr; }
+      h1 { font-size: 1.8rem; }
+      .topbar nav a { display: none; }
+      .topbar nav a.keep { display: block; }
+    }
+    .highlight-box {
+      background: rgba(118, 185, 0, 0.1);
+      border-left: 4px solid var(--nvidia-green);
+      padding: 1rem 1.5rem;
+      margin: 1rem 0;
+    }
+    footer {
+      margin-top: 4rem;
+      padding: 2rem 0;
+      border-top: 1px solid var(--nvidia-gray);
+      opacity: 0.7;
+      font-size: 0.85rem;
+    }
+  </style>
+</head>
+<body>
+
+  <div class="topbar">
+    <div class="topbar-inner">
+      <img class="bat" src="assets/bat_logo.png" alt="BaT"/>
+      <span class="name">AutoMedBench BaT</span>
+      <nav>
+        <a href="#method">Method</a>
+        <a href="#agent">Agent</a>
+        <a href="#infra">Infrastructure</a>
+        <a href="#citation">Citation</a>
+        <a class="keep" href="https://github.com/AutoMedBench/Benchmark-as-Teacher">GitHub</a>
+        <img class="nv" src="assets/nvidia_logo.svg" alt="NVIDIA"/>
+      </nav>
+    </div>
+  </div>
+
+  <div class="container">
+    <header class="hero">
+      <div style="margin-bottom: 1rem;">
+        <span class="badge">Blog</span>
+        <span class="badge" style="background: var(--accent-cyan);">NVIDIA Research</span>
+      </div>
+      <h1>Benchmark-as-Teacher</h1>
+      <p class="subtitle">Turning a structured benchmark into self-evolving post-training infrastructure for long-horizon agents.</p>
+      <div class="links">
+        <a href="https://arxiv.org/abs/2608.16211">Paper</a>
+        <a href="https://github.com/AutoMedBench/Benchmark-as-Teacher">Code</a>
+        <a href="https://huggingface.co/collections/MitakaKuma/benchmark-as-teacher">Training Data</a>
+        <a href="https://huggingface.co/spaces/MitakaKuma/AutoMedBench-Leaderboard">Leaderboard</a>
+      </div>
+    </header>
+
+    <section>
+      <h2>TL;DR</h2>
+      <div class="highlight-box">
+        A benchmark is not just a scoreboard — it can teach. BaT closes the loop between evaluation and training: stage-level rubrics diagnose weaknesses, a held-out-safe data bank supplies targeted practice, and GRPO updates the policy. The new checkpoint is re-benchmarked, and the cycle repeats.
+      </div>
+      <p>On AutoMedBench-Lite, <strong>BaT-9B Agent reaches 79.6 Overall — exceeding Claude Opus 4.6 + Claude Code (77.5)</strong>.</p>
+    </section>
+
+    <section id="method">
+      <h2>Method</h2>
+      <div class="figure-container">
+        <img src="assets/fig_method.png" alt="BaT method"/>
+      </div>
+      <div class="grid-2">
+        <div>
+          <h3>Stage Bank</h3>
+          <p>An asynchronous pipeline that synthesizes held-out-safe training states — <code>6 focus x 7 tracks x 3 outcomes = 126 states</code> — with strict content isolation from the evaluation set.</p>
+        </div>
+        <div>
+          <h3>BiCuRL</h3>
+          <p>Bilevel Curriculum RL. The outer loop reads stage scores and picks the weakest stage; the inner loop practices it with GRPO on Stage Bank states, mixing target, rehearsal, and end-to-end pools in every batch.</p>
+        </div>
+      </div>
+    </section>
+
+    <section id="agent">
+      <h2>BaT Agent</h2>
+      <div class="figure-container">
+        <img src="assets/fig_teaser_figure.png" alt="BaT agent performance"/>
+      </div>
+      <p>BaT-4B and BaT-9B more than double the Overall scores of their Qwen Instruct baselines. The framework is model-agnostic — larger LLMs are the immediate next step.</p>
+    </section>
+
+    <section id="infra">
+      <h2>Infrastructure</h2>
+      <p>BaT is training infrastructure, not a single recipe. Supported stacks: <code>VeRL + vLLM</code> and <code>Slime + SGLang</code>.</p>
+
+      <h3>Unified data synthesis + post-training</h3>
+      <p>Stage Bank is not a preprocessing step — it runs as an <strong>asynchronous service beside the trainer</strong>. While round <code>r</code> trains on GPUs, the pipeline is already synthesizing round <code>r+1</code> states on CPU / API workers. The only interface between the two is a signed round manifest:</p>
+      <pre><code>manifest.json
+  source_sha256   # pins the held-out-safe source grid
+  target_stage    # picked by the BiCuRL outer loop (e.g. S3)
+  leakage_checks  # content-isolation report, must pass</code></pre>
+      <p>Synthesis never blocks a GPU, and the evaluation firewall stays intact: training only ever sees manifest-approved states, never benchmark content.</p>
+
+      <div class="figure-container">
+        <img src="assets/fig_infra_accel.png" alt="BaT infrastructure acceleration"/>
+      </div>
+      <p>Overlapping synthesis with training and colocating the eval gate on the rollout engine cuts wall-clock per BaT round from 10.4h to 6.4h (9B on 8xA100). The rollout engine itself is swappable — SGLang gives ~4x throughput over plain HF generation.</p>
+    </section>
+
+    <section id="citation">
+      <h2>Citation</h2>
+      <pre><code>@article{liu2026bat,
+  title={BaT: Towards Self-Evolving Medical Research Agent
+         with Stage Rubrics},
+  author={Liu, Junqi and He, Yufan and He, Yexiao and Guo, Pengfei
+          and Yang, Dong and Myronenko, Andriy and Zhao, Can
+          and Ye, Hanrong and Qi, Tianhao and Zhou, Yuyin
+          and Xu, Daguang and Tang, Yucheng},
+  journal={arXiv preprint arXiv:2608.16211},
+  year={2026}
+}</code></pre>
+    </section>
+
+    <footer>
+      <p>Benchmark-as-Teacher | NVIDIA Research | 2026</p>
+    </footer>
+  </div>
+</body>
+</html>
