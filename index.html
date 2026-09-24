@@ -13,54 +13,67 @@
         })();
     </script>
     <style>
-        /* ── Cozy coral palette ── */
+        /* ── Warm paper / deep slate ── */
         :root {
-            --bg: #FFFFFF;
-            --panel: #FAFAFA;
-            --ink: #1D1B1A;
-            --ink-soft: #737373;
-            --ink-mute: #A1A1A1;
-            --edge: #E5E5E5;
-            --grid: #F5F5F5;
-            --primary: #B85A3A;
-            --primary-hover: #963F25;
-            --primary-soft: #FAEAE4;
-            --moss: #209A84;
-            --walnut: #986801;
-            --amber-bark: #DA9100;
-            --amber-soft: #FFF3E1;
-            --card-hover: #F5F5F5;
-            --shadow: 0 1px 1px rgba(29,27,26,0.02), 0 2px 4px rgba(29,27,26,0.03);
+            color-scheme: light;
+            --bg: #F5F3EE;
+            --panel: #FFFEFB;
+            --ink: #252B29;
+            --ink-soft: #5F6B66;
+            --ink-mute: #69776F;
+            --edge: #DDDCD3;
+            --grid: #ECEDE7;
+            --primary: #426A91;
+            --primary-hover: #2D5178;
+            --primary-soft: #E7EFF7;
+            --tag-ink: #4B6481;
+            --tag-bg: #EDF2F8;
+            --card-hover: #FFFFFF;
+            --nav-bg: rgba(245,243,238,0.9);
+            --glow: rgba(133,174,211,0.2);
+            --button-hover-ink: #FFFFFF;
+            --shadow: 0 8px 26px rgba(40,48,43,0.045);
         }
 
         :root[data-theme="dark"] {
-            --bg: #0E0C0C;
-            --panel: #1D1B1A;
-            --ink: #E6E1E0;
-            --ink-soft: #A1A1A1;
-            --ink-mute: #737373;
-            --edge: #404040;
-            --grid: #1D1B1A;
-            --primary: #DA7756;
-            --primary-hover: #F0997A;
-            --primary-soft: #2E1A14;
-            --moss: #5EB64C;
-            --walnut: #E5C07B;
-            --amber-bark: #DA9100;
-            --amber-soft: #2A2419;
-            --card-hover: #23211F;
-            --shadow: 0 1px 2px rgba(0,0,0,0.45), 0 4px 10px rgba(0,0,0,0.32);
+            color-scheme: dark;
+            --bg: #121A1D;
+            --panel: #1B2527;
+            --ink: #E8EEE9;
+            --ink-soft: #B1BFB7;
+            --ink-mute: #91A098;
+            --edge: #354441;
+            --grid: #263431;
+            --primary: #9DC7F2;
+            --primary-hover: #C8DFF7;
+            --primary-soft: #25394C;
+            --tag-ink: #B2CBE5;
+            --tag-bg: #263849;
+            --card-hover: #202D2E;
+            --nav-bg: rgba(18,26,29,0.91);
+            --glow: rgba(72,120,168,0.16);
+            --button-hover-ink: #17201F;
+            --shadow: 0 12px 32px rgba(0,0,0,0.14);
         }
 
         * { box-sizing: border-box; }
 
+        html { scroll-behavior: smooth; }
+
         html, body {
             margin: 0; padding: 0;
-            background: var(--bg); color: var(--ink);
-            font-family: 'SF Mono', 'Menlo', 'Monaco', monospace;
+            background: var(--bg);
+            color: var(--ink);
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
             font-size: 15px; line-height: 1.6;
             -webkit-font-smoothing: antialiased;
             transition: background-color 0.25s ease, color 0.25s ease;
+        }
+
+        body {
+            min-height: 100vh;
+            background-image: radial-gradient(ellipse 58rem 34rem at 12% 0%, var(--glow), transparent 72%);
+            background-repeat: no-repeat;
         }
 
         h1, h2, h3 {
@@ -73,6 +86,61 @@
 
         a { color: var(--primary); text-decoration: none; }
         a:hover { color: var(--primary-hover); text-decoration: underline; text-underline-offset: 3px; }
+        a:focus-visible, button:focus-visible { outline: 2px solid var(--primary); outline-offset: 3px; }
+
+        .site-nav {
+            position: sticky;
+            top: 0;
+            z-index: 90;
+            background: var(--nav-bg);
+            border-bottom: 1px solid var(--edge);
+            backdrop-filter: blur(16px);
+            -webkit-backdrop-filter: blur(16px);
+        }
+
+        .site-nav-inner {
+            max-width: 78rem;
+            margin: 0 auto;
+            padding: 0.65rem 3rem;
+            display: flex;
+            align-items: center;
+            gap: 1.5rem;
+        }
+
+        .site-nav-label {
+            flex: none;
+            color: var(--primary);
+            font-size: 1rem;
+            font-weight: 700;
+            letter-spacing: 0.06em;
+        }
+
+        .site-nav-links {
+            display: flex;
+            gap: 0.35rem;
+            overflow-x: auto;
+            scrollbar-width: thin;
+        }
+
+        .site-nav-links a {
+            flex: none;
+            padding: 0.38rem 0.6rem;
+            font-size: 1rem;
+            font-weight: 500;
+            color: var(--ink-soft);
+            white-space: nowrap;
+            border-radius: 6px;
+            transition: color 0.18s ease, background-color 0.18s ease;
+        }
+
+        .site-nav-links a:hover,
+        .site-nav-links a:focus-visible {
+            color: var(--primary);
+            background: var(--primary-soft);
+            text-decoration: none;
+        }
+
+        #about, #education, #awards, main section { scroll-margin-top: 5rem; }
 
         /* ── Centered cozy container ── */
         .layout {
@@ -81,7 +149,7 @@
             gap: 3rem;
             max-width: 78rem;
             margin: 0 auto;
-            padding: 3.5rem 3rem 5rem;
+            padding: 2rem 3rem 5rem;
             align-items: start;
         }
 
@@ -89,10 +157,10 @@
         .sidebar {
             background: var(--panel);
             border: 1px solid var(--edge);
-            border-radius: 0;
+            border-radius: 14px;
             padding: 2rem 1.75rem 2.25rem;
             position: sticky;
-            top: 2rem;
+            top: 5rem;
             box-shadow: var(--shadow);
         }
 
@@ -107,7 +175,7 @@
         .avatar {
             width: 100%;
             display: block;
-            border-radius: 0;
+            border-radius: 9px;
             border: 1px solid var(--edge);
             margin-bottom: 1rem;
         }
@@ -131,7 +199,6 @@
         }
 
         .intro {
-            font-family: 'Apple Braille', sans-serif;
             font-size: 0.92rem;
             margin: 0 0 1.5rem;
             line-height: 1.65;
@@ -143,8 +210,10 @@
         h2 {
             font-size: 1rem;
             margin: 1.75rem 0 0.85rem;
-            padding-bottom: 0.45rem;
+            padding: 0 0 0.45rem 0.8rem;
             border-bottom: 1px solid var(--edge);
+            border-left: 3px solid var(--primary);
+            line-height: 1.15;
         }
 
         h2:first-of-type { margin-top: 0; }
@@ -160,17 +229,21 @@
         .card {
             background: var(--panel);
             border: 1px solid var(--edge);
-            border-radius: 0;
+            border-radius: 11px;
             padding: 1.15rem 1.35rem 1.25rem;
             margin-bottom: 0.9rem;
-            transition: border-color 0.18s ease, background 0.25s ease;
+            transition: border-color 0.18s ease, background 0.25s ease, transform 0.18s ease, box-shadow 0.18s ease;
             box-shadow: var(--shadow);
         }
 
         .card:hover {
             border-color: var(--primary);
             background: var(--card-hover);
+            transform: translateY(-2px);
+            box-shadow: 0 14px 32px rgba(32,42,39,0.1);
         }
+
+        :root[data-theme="dark"] .card:hover { box-shadow: 0 14px 32px rgba(0,0,0,0.2); }
 
         .card-header {
             display: flex;
@@ -194,7 +267,6 @@
         }
 
         .card-location {
-            font-family: 'Apple Braille', sans-serif;
             font-size: 0.82rem;
             color: var(--ink-mute);
             margin-bottom: 0.5rem;
@@ -205,9 +277,9 @@
             font-size: 0.74rem;
             font-weight: 500;
             padding: 0.18rem 0.55rem;
-            border-radius: 0;
-            background: var(--amber-soft);
-            color: var(--walnut);
+            border-radius: 999px;
+            background: var(--tag-bg);
+            color: var(--tag-ink);
             margin: 0.3rem 0.3rem 0 0;
             border: 1px solid transparent;
         }
@@ -215,7 +287,7 @@
         ul { margin: 0.4rem 0 0; padding-left: 1.15rem; }
         li { margin-bottom: 0.3rem; font-size: 0.92rem; line-height: 1.6; color: var(--ink); }
         li::marker { color: var(--ink-mute); }
-        .card li { font-family: 'Apple Braille', sans-serif; }
+        .card li { font-family: inherit; }
 
         .links {
             margin-top: 0.85rem;
@@ -228,33 +300,26 @@
             font-family: 'SF Mono', 'Menlo', 'Monaco', monospace;
             font-size: 0.78rem;
             font-weight: 500;
-            color: var(--ink);
+            color: var(--primary);
             background: var(--panel);
             text-decoration: none;
             padding: 0.26rem 0.6rem;
-            border: 1.5px solid var(--ink);
-            border-radius: 0;
-            box-shadow: 2px 2px 0 var(--ink);
-            transition: transform 0.1s ease, box-shadow 0.1s ease, background 0.15s, color 0.15s;
+            border: 1px solid var(--edge);
+            border-radius: 6px;
+            transition: border-color 0.15s ease, background 0.15s, color 0.15s;
         }
 
         .card-btn:hover {
-            background: var(--primary);
-            color: var(--bg);
-            transform: translate(1px, 1px);
-            box-shadow: 1px 1px 0 var(--ink);
+            background: var(--primary-soft);
+            border-color: var(--primary);
+            color: var(--primary-hover);
             text-decoration: none;
-        }
-
-        .card-btn:active {
-            transform: translate(2px, 2px);
-            box-shadow: 0 0 0 var(--ink);
         }
 
         /* ── Sidebar edu cards ── */
         .edu-card {
             padding: 0.85rem 1rem;
-            border-radius: 0;
+            border-radius: 9px;
             border: 1px solid var(--edge);
             background: var(--bg);
             margin-bottom: 0.6rem;
@@ -262,6 +327,39 @@
         }
 
         .edu-card:hover { border-color: var(--primary); }
+
+        .edu-heading, .experience-heading {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 0.8rem;
+        }
+
+        .edu-logo {
+            width: 48px;
+            height: 48px;
+            object-fit: contain;
+            flex: none;
+        }
+
+        .edu-logo.sjtu-logo {
+            width: 58px;
+            filter: invert(1);
+        }
+
+        .experience-heading { align-items: flex-start; margin-bottom: 0.35rem; }
+        .experience-heading .card-header { margin-bottom: 0; }
+        .experience-logos { display: flex; align-items: center; gap: 0.5rem; flex: none; }
+        .experience-logo {
+            width: 48px;
+            height: 48px;
+            object-fit: contain;
+            flex: none;
+        }
+        .experience-logo.shlab { width: 76px; }
+        .experience-logo.jhu { width: 76px; }
+        .experience-logo.nvidia { width: 48px; }
+        :root[data-theme="dark"] .sjtu-logo { filter: none; }
 
         .edu-school {
             font-family: 'SF Mono', 'Menlo', 'Monaco', monospace;
@@ -305,31 +403,27 @@
             font-weight: 500;
             color: var(--ink);
             background: var(--panel);
-            border: 1.5px solid var(--ink);
+            border: 1px solid var(--edge);
             text-decoration: none;
             padding: 0.4rem 0.85rem;
-            border-radius: 0;
-            box-shadow: 3px 3px 0 var(--ink);
-            transition: transform 0.1s ease, box-shadow 0.1s ease, background 0.15s, color 0.15s;
+            border-radius: 7px;
+            transition: transform 0.15s ease, border-color 0.15s ease, background 0.15s, color 0.15s;
         }
 
         .btn:hover {
             background: var(--primary);
-            color: var(--bg);
-            transform: translate(2px, 2px);
-            box-shadow: 1px 1px 0 var(--ink);
+            border-color: var(--primary);
+            color: var(--button-hover-ink);
+            transform: translateY(-2px);
             text-decoration: none;
         }
 
-        .btn:active {
-            transform: translate(3px, 3px);
-            box-shadow: 0 0 0 var(--ink);
-        }
+        .btn:active { transform: translateY(0); }
 
         /* ── Featured card ── */
         .card.featured {
             border-color: var(--primary);
-            background: linear-gradient(180deg, var(--primary-soft), var(--panel));
+            background: linear-gradient(135deg, var(--primary-soft), var(--panel) 62%);
         }
 
         .card.featured .card-title::after {
@@ -344,7 +438,7 @@
             background: var(--primary-soft);
             border: 1px solid var(--primary);
             padding: 0.12rem 0.45rem;
-            border-radius: 0;
+            border-radius: 999px;
             margin-left: 0.55rem;
             vertical-align: middle;
         }
@@ -404,7 +498,7 @@
             background: var(--primary-soft);
             border: 1px solid var(--primary);
             padding: 0.12rem 0.45rem;
-            border-radius: 0;
+            border-radius: 999px;
             margin-right: 0.5rem;
             vertical-align: middle;
         }
@@ -437,29 +531,27 @@
             font-weight: 500;
             color: var(--ink);
             background: var(--panel);
-            border: 1.5px solid var(--ink);
+            border: 1px solid var(--edge);
             padding: 0.5rem 1.05rem;
-            border-radius: 0;
+            border-radius: 999px;
             cursor: pointer;
             z-index: 100;
-            box-shadow: 3px 3px 0 var(--ink);
-            transition: transform 0.1s ease, box-shadow 0.1s ease, background 0.15s, color 0.15s;
+            box-shadow: var(--shadow);
+            transition: transform 0.15s ease, border-color 0.15s ease, background 0.15s, color 0.15s;
         }
 
         .theme-toggle:hover {
             background: var(--primary);
-            color: var(--bg);
-            transform: translate(2px, 2px);
-            box-shadow: 1px 1px 0 var(--ink);
+            border-color: var(--primary);
+            color: var(--button-hover-ink);
+            transform: translateY(-2px);
         }
 
-        .theme-toggle:active {
-            transform: translate(3px, 3px);
-            box-shadow: 0 0 0 var(--ink);
-        }
+        .theme-toggle:active { transform: translateY(0); }
 
         /* ── Responsive ── */
         @media (max-width: 960px) {
+            .site-nav-inner { padding: 0.65rem 1.5rem; gap: 0.75rem; }
             .layout {
                 grid-template-columns: 1fr;
                 gap: 1.5rem;
@@ -471,29 +563,39 @@
                 padding: 1.75rem 1.5rem 2rem;
             }
         }
+
+        @media (prefers-reduced-motion: reduce) {
+            html { scroll-behavior: auto; }
+            *, *::before, *::after { transition-duration: 0.01ms !important; }
+        }
     </style>
 </head>
 <body>
 
+<nav class="site-nav" aria-label="Section navigation">
+    <div class="site-nav-inner">
+        <span class="site-nav-label">KUMA / INDEX</span>
+        <div class="site-nav-links">
+            <a href="#news">News</a>
+            <a href="#projects">Projects</a>
+            <a href="#publications">Publications</a>
+            <a href="#experience">Experience</a>
+            <a href="#awards">Awards</a>
+        </div>
+    </div>
+</nav>
+
 <div class="layout">
 
     <!-- ── LEFT: Personal info + Education ── -->
-    <aside class="sidebar">
+    <aside class="sidebar" id="about">
         <img src="profile.jpg" alt="Junqi Liu (Kuma)" class="avatar">
         <h1>Kuma <span class="nickname">(Junqi Liu)</span></h1>
         <p class="tagline">Towards automatic research AI.</p>
         <p class="meta">Bay Area, CA · jliu718@ucsc.edu</p>
 
         <p class="intro">
-            I work on Agentic AutoResearch AI — building LLM research agents that can plan, run, and
-            validate experiments across the full research pipeline. Incoming PhD student at
-            UC Santa Cruz, advised by
-            <a href="https://yuyinzhou.github.io/">Prof. Yuyin Zhou</a> and
-            <a href="https://cihangxie.github.io/">Prof. Cihang Xie</a>; previously a research scholar at
-            Johns Hopkins (CCVL) with
-            <a href="https://www.cs.jhu.edu/~ayuille/">Prof. Alan Yuille</a> and
-            <a href="https://www.zongweiz.com/">Prof. Zongwei Zhou</a>, where I worked on generative AI and
-            vision-language models (VLMs) for medical imaging.
+            I study Agentic RSI. My focus is long-horizon research tasks and environment scaling.
         </p>
 
         <h2>Connect</h2>
@@ -506,16 +608,18 @@
             <a href="https://x.com/Kuma_0Kumaaa" class="btn">Twitter</a>
         </div>
 
-        <h2>Education</h2>
+        <h2 id="education">Education</h2>
 
         <div class="edu-card">
-            <div class="edu-school">UC Santa Cruz</div>
+            <div class="edu-heading"><div class="edu-school">UC Santa Cruz</div><img src="assets/logos/ucsc-seal.svg" alt="UC Santa Cruz seal" class="edu-logo ucsc-logo"></div>
             <div class="edu-degree">PhD, Computer Science & Engineering · 2026–2031</div>
             <p class="edu-note">Advised by <a href="https://yuyinzhou.github.io/">Prof. Yuyin Zhou</a> and <a href="https://cihangxie.github.io/">Prof. Cihang Xie</a>.</p>
+            <span class="tag">AI Agents</span>
+            <span class="tag">RSI</span>
         </div>
 
         <div class="edu-card">
-            <div class="edu-school">University of Copenhagen</div>
+            <div class="edu-heading"><div class="edu-school">University of Copenhagen</div><img src="assets/logos/copenhagen.svg" alt="University of Copenhagen seal" class="edu-logo copenhagen-logo"></div>
             <div class="edu-degree">MSc, IT & Cognition · 2024–2026</div>
             <p class="edu-note">NLP and computational cognitive science.</p>
             <span class="tag">NLP</span>
@@ -523,14 +627,14 @@
         </div>
 
         <div class="edu-card">
-            <div class="edu-school">Shanghai Jiao Tong University</div>
+            <div class="edu-heading"><div class="edu-school">Shanghai Jiao Tong University</div><img src="assets/logos/sjtu-wordmark.png" alt="Shanghai Jiao Tong University emblem" class="edu-logo sjtu-logo"></div>
             <div class="edu-degree">BEng, Artificial Intelligence · 2020–2024</div>
             <p class="edu-note">ML, computer vision, RL. Advised by <a href="https://jhc.sjtu.edu.cn/people/members/faculty/nanyang-ye.html">Prof. Nanyang Ye</a>.</p>
             <span class="tag">Machine learning</span>
             <span class="tag">Computer vision</span>
         </div>
 
-        <h2>Awards</h2>
+        <h2 id="awards">Awards</h2>
         <ul class="awards">
             <li><span>Meritorious Winner, COMAP MCM (top 10%)</span><span class="yr">2023</span></li>
             <li><span>SJTU Overseas In-depth Study Scholarship</span><span class="yr">2024</span></li>
@@ -541,7 +645,7 @@
     <!-- ── RIGHT: Research + Pubs + Experience ── -->
     <main class="main">
 
-        <section>
+        <section id="news">
             <h2>News</h2>
             <ul class="news">
                 <li>
@@ -551,8 +655,8 @@
             </ul>
         </section>
 
-        <section>
-            <h2>Active Projects</h2>
+        <section id="projects">
+            <h2>Projects</h2>
 
             <div class="card featured">
                 <div class="card-header">
@@ -570,10 +674,6 @@
                     <a href="https://huggingface.co/collections/MitakaKuma/benchmark-as-teacher" target="_blank" rel="noopener" class="card-btn">Hugging Face</a>
                 </div>
             </div>
-        </section>
-
-        <section>
-            <h2>Lead Projects</h2>
 
             <div class="card">
                 <div class="card-header">
@@ -614,7 +714,7 @@
             </div>
         </section>
 
-        <section>
+        <section id="publications">
             <h2>Publications</h2>
             <ul class="pubs">
                 <li>
@@ -648,19 +748,57 @@
             </ul>
         </section>
 
-        <section>
+        <section id="experience">
             <h2>Experience</h2>
 
             <div class="card">
-                <div class="card-header">
-                    <span class="card-title">Research Scholar — Johns Hopkins, CCVL</span>
-                    <span class="card-role">2025 – Mar 2026</span>
+                <div class="experience-heading">
+                    <div class="card-header">
+                        <span class="card-title">Agent Algorithm Engineer — Alibaba, Qwen</span>
+                        <span class="card-role">Jul – Sep 2026</span>
+                    </div>
+                    <div class="experience-logos"><img src="assets/logos/qwen.svg" alt="Qwen logo" class="experience-logo"></div>
                 </div>
-                <div class="card-location">Advised by Prof. Alan Yuille (Bloomberg Distinguished Professor)</div>
+                <div class="card-location">Lead projects: BenchAttributer and QwenPaw-RSI</div>
                 <ul>
-                    <li><strong>SMILE</strong> — anatomy-aware diffusion for CT contrast enhancement. ~50% FID gain, ~10% F1 lift on early tumor detection. CVPR 2026 (under review).</li>
-                    <li><strong>ShapeKit</strong> — shape-aware postprocessing for organ segmentation. &gt;10% average DSC improvement. MICCAI 2025.</li>
-                    <li><strong>OpenVAE</strong> — pretrained 2D/3D KL-VAE / VQ-VAE backbones for CT and MRI, trained on 400,000+ CTs from 145 hospitals worldwide. MICCAI 2026 (provisional).</li>
+                    <li>Built <strong>BenchAttributer</strong> to separate model errors from agent harness errors. Used its feedback to improve QwenPaw.</li>
+                    <li>Helped train <strong>QwenPaw</strong> with multi-turn RL. Used error data to guide sandbox task creation and improve Qwen CoWork-Bench results.</li>
+                </ul>
+            </div>
+
+            <div class="card">
+                <div class="experience-heading">
+                    <div class="card-header">
+                        <span class="card-title">Research Scholar — NVIDIA Research</span>
+                        <span class="card-role">2026</span>
+                    </div>
+                    <div class="experience-logos"><img src="assets/logos/nvidia-mark.svg" alt="NVIDIA logo" class="experience-logo nvidia"></div>
+                </div>
+                <div class="card-location">Lead projects: AutoMedBench, Benchmark-as-Teacher, BiCuRL</div>
+                <ul>
+                    <li>Led <strong>AutoMedBench</strong>, a benchmark for long medical research tasks. Ran over 6,000 agent tests of planning, reasoning, and recovery.</li>
+                    <li>Led <strong>Benchmark-as-Teacher</strong>. Turned long task traces into step-level feedback for agent training.</li>
+                    <li>Built sandbox skills and tools for AutoResearch. Studied how tool use and memory affect long tasks. Used multi-turn RL to improve research agents.</li>
+                </ul>
+                <div class="links">
+                    <a href="https://github.com/KumaKuma2002/AutoMedBench" target="_blank" rel="noopener" class="card-btn">AutoMedBench</a>
+                    <a href="https://github.com/AutoMedBench/Benchmark-as-Teacher" target="_blank" rel="noopener" class="card-btn">Benchmark-as-Teacher</a>
+                </div>
+            </div>
+
+            <div class="card">
+                <div class="experience-heading">
+                    <div class="card-header">
+                        <span class="card-title">Research Scholar — Johns Hopkins University, CCVL</span>
+                        <span class="card-role">Aug 2025 – Mar 2026</span>
+                    </div>
+                    <div class="experience-logos"><img src="assets/logos/jhu.png" alt="Johns Hopkins University logo" class="experience-logo jhu"></div>
+                </div>
+                <div class="card-location">Advised by Prof. Alan Yuille and Prof. Zongwei Zhou</div>
+                <ul>
+                    <li><strong>ShapeKit:</strong> improved organ segmentation DSC by over 10% on average. Licensed by Johns Hopkins.</li>
+                    <li><strong>SMILE:</strong> used diffusion for CT contrast translation. Improved FID by about 50% and early tumor detection F1 by about 10%.</li>
+                    <li><strong>OpenVAE:</strong> trained on over 400,000 CT scans. Improved cancer detection AUC by 10%.</li>
                 </ul>
                 <div class="links">
                     <a href="https://github.com/MrGiovanni/SMILE" target="_blank" rel="noopener" class="card-btn">SMILE</a>
@@ -672,24 +810,16 @@
             </div>
 
             <div class="card">
-                <div class="card-header">
-                    <span class="card-title">Quantitative Researcher — Shanghai Quantinv</span>
-                    <span class="card-role">Mar – Aug 2024</span>
-                </div>
-                <div class="card-location">Investment & Decision Team · return offer</div>
-                <ul>
-                    <li>Designed <strong>QuantNet-Llama3-8B</strong>, an attention-based factor model fine-tuned from Llama3-8B — 180% excess return at 20% maximum drawdown.</li>
-                </ul>
-            </div>
-
-            <div class="card">
-                <div class="card-header">
-                    <span class="card-title">Student Research — Shanghai AI Lab</span>
-                    <span class="card-role">Oct 2022 – Oct 2023</span>
+                <div class="experience-heading">
+                    <div class="card-header">
+                        <span class="card-title">LLM Pretrain Researcher — Shanghai AI Lab</span>
+                        <span class="card-role">Oct 2022 – Oct 2023</span>
+                    </div>
+                    <div class="experience-logos"><img src="assets/logos/shlab-share.png" alt="Shanghai AI Lab logo" class="experience-logo shlab"></div>
                 </div>
                 <div class="card-location">Advised by Prof. Nanyang Ye, SJTU</div>
                 <ul>
-                    <li>Built the AI4S data pipeline and pretraining for <strong>InternLM-7B</strong> — large-scale data curation, cleaning, and pretraining runs. First-author publication.</li>
+                    <li>Built the AI4S data pipeline for <strong>InternLM-7B</strong>. Curated training data and ran pretraining experiments. First-author publication.</li>
                 </ul>
                 <div class="links">
                     <a href="https://tempmpm.readthedocs.io/en/latest/mpm.html" target="_blank" rel="noopener" class="card-btn">Docs</a>
